@@ -3,6 +3,17 @@ import logo from '../components/logo192.png';
 
 export default class N00bs extends React.Component{
 
+    componentDidMount()
+    {
+      console.log("compodidmount");
+      fetch('http://localhost:8080/backend/noobs-api/user/all')
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(console.log());
+    }
+
     render(){
         return (
             <div className="App">
