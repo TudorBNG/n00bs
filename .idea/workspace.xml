@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="959c1287-be4d-422c-9f7c-e2aa977e7b38" name="Default Changelist" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/.idea/$CACHE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-business/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-business/src/main/java/user/control/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-business/src/main/java/user/converter/UserConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-business/src/main/java/user/converter/dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-ear/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-persistence/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-persistence/src/main/java/user/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-persistence/src/main/java/user/entity/UserEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-persistence/src/main/java/utils/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-persistence/src/main/resources/META-INF/beans.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-persistence/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-view/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-view/src/main/java/application/N00bsApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-view/src/main/java/cors/CORSFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-view/src/main/java/user/facade/UserFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-view/src/main/java/user/resource/UserResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/backend-view/src/main/resources/webapp/META-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.idea/$CACHE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.idea/frontend.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/images/loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/LoadingPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/N00bs.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/serviceWorker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles/components/Noobs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles/components/_loader.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles/styles.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/webpack.config.js" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\n00bs\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1TYQaU2O0o7hCbgQOxyAio8rS2F" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="959c1287-be4d-422c-9f7c-e2aa977e7b38" name="Default Changelist" comment="" />
+      <created>1573634612537</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573634612537</updated>
+      <workItem from="1573634614019" duration="588000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+  </component>
+</project>
