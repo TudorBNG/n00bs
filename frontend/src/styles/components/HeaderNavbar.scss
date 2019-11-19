@@ -1,0 +1,12 @@
+@import '../colorPalette';
+
+.toolbar-style {
+    background-color: $darkGray;
+    width:70vw;
+    border-radius: 25px;
+}
+.logo-img-style {
+    width: calc(10px + 20vmin);
+    padding-left: 1vw;
+    cursor: pointer;
+}
