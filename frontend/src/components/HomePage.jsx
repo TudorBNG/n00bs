@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import HeaderNavbar from './navbars/HeaderNavbar';
+import Sidebar from './navbars/Sidebar';
+
 import '../styles/components/HomePage.scss';
 
 export default class HomePage extends Component {
@@ -21,12 +23,9 @@ export default class HomePage extends Component {
           <div className="App-header">
             <HeaderNavbar/>
           </div>
-          {
-          //   TODO here: App-body
-          //   <div className="App-body">
-          //  </div>
-          }
-          nu o sa tac niciodata ca sa stiti!!
+          <div className="App-body">
+            <Sidebar/>
+          </div>
         </div>
       </div>
     )

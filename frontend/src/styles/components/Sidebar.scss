@@ -1,0 +1,14 @@
+@import '../colorPalette';
+
+.sidebar-style{
+    flex-direction: column;
+    display: flex;
+    flex:1;
+    background-color: $darkGray;
+    border-radius: 15px;
+    align-items: center;
+    height: 97%;
+    max-width: 20vw;
+    //width: 20vw;
+    //height: 82vh;
+}
