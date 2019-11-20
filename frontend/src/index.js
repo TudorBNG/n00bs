@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Noobs from './components/N00bs';
-import LoadingPage from './components/LoadingPage';
+import HomePage from './components/HomePage';
 import './styles/styles.scss';
 import * as serviceWorker from './serviceWorker';
 
 
 //ReactDOM.render(<LoadingPage />, document.getElementById('root'));
-ReactDOM.render(<Noobs />, document.getElementById('root'));
+ReactDOM.render(<HomePage />, document.getElementById('root'));
 
 
 
