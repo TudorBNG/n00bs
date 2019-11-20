@@ -8,7 +8,7 @@
     border-radius: 15px;
     align-items: center;
     height: 97%;
-    max-width: 20vw;
-    //width: 20vw;
-    //height: 82vh;
+    max-width: 15vw;
+    overflow-y: scroll;
 }
+.sidebar-style::-webkit-scrollbar { width: 0 !important }

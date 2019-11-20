@@ -21,10 +21,25 @@ export default class HomePage extends Component {
       <div className="Full-view">
         <div className="App-Container">
           <div className="App-header">
-            <HeaderNavbar/>
+            <HeaderNavbar />
           </div>
           <div className="App-body">
-            <Sidebar/>
+            <Sidebar />
+          
+          <div className="Games-view">
+            <div>
+              lalala
+            </div>
+            <div>
+              lalala
+            </div>
+            <div>
+              lalala
+            </div>
+            {/*
+              //scrollable ul with game cards
+            */}
+          </div>
           </div>
         </div>
       </div>
