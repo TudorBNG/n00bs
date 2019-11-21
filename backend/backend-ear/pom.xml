@@ -11,6 +11,7 @@
 
     <artifactId>backend-ear</artifactId>
     <packaging>ear</packaging>
+    <name>Backend Ear</name>
 
     <dependencies>
         <dependency>
