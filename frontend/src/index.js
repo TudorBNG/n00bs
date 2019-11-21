@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import HomePage from './components/HomePage';
 import './styles/styles.scss';
+import { firebase } from './firebase/firebase';
 import * as serviceWorker from './serviceWorker';
 
 
@@ -9,6 +10,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(<HomePage />, document.getElementById('root'));
 
 
+firebase.auth().onAuthStateChanged((user) => {
+    console.log(user);
+})
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
