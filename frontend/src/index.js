@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import HomePage from './components/HomePage';
 import './styles/styles.scss';
+import './styles/fonts/coolvetica-rg.ttf';
 import { firebase } from './firebase/firebase';
 import * as serviceWorker from './serviceWorker';
 

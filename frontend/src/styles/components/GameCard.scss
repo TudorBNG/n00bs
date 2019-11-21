@@ -1,0 +1,22 @@
+@import '../colorPalette';
+@import '../fonts/noobs-font';
+
+.gamecard-style{
+    display: flex;
+    flex:1;
+    background-color:$darkGray;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    min-height: 25vh;
+    width: 100%;
+    margin-bottom: 3%;
+    //margin: 5%;
+    //max-width: 15vw;
+    //overflow-y: scroll;
+    color: white;
+    font-size: 100%;
+    font-family: 'noobs-font';
+    font-weight: 100;
+}

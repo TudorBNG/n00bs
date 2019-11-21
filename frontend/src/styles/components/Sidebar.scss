@@ -1,0 +1,21 @@
+@import '../colorPalette';
+@import '../fonts/noobs-font';
+
+.sidebar-style{
+    flex-direction: column;
+    display: flex;
+    flex:1;
+    background-color: $darkGray;
+    border-radius: 15px;
+    align-items: center;
+    height: 97%;
+    max-width: 15vw;
+    overflow-y: scroll;
+    
+    //font styles
+    color: white;
+    font-size: 100%;
+    font-family: 'noobs-font';
+    font-weight: 100;
+}
+.sidebar-style::-webkit-scrollbar { width: 0 !important }

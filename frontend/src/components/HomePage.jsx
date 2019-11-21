@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import HeaderNavbar from './navbars/HeaderNavbar';
+import Sidebar from './navbars/Sidebar';
 import '../styles/components/HomePage.scss';
+import GameCard from './GameCard';
 
 export default class HomePage extends Component {
 
@@ -15,18 +17,23 @@ export default class HomePage extends Component {
   }
 
   render() {
+    const gamesList = ['joc jmek', 'joc barbie', 'metin', 'agar.io'];
     return (
       <div className="Full-view">
         <div className="App-Container">
           <div className="App-header">
-            <HeaderNavbar/>
+            <HeaderNavbar />
           </div>
-          {
-          //   TODO here: App-body
-          //   <div className="App-body">
-          //  </div>
-          }
-          nu o sa tac niciodata ca sa stiti!!
+          <div className="App-body">
+            <Sidebar />
+          
+          <div className="Games-view">
+            <GameCard game={gamesList[0]}/>    
+            <GameCard game={gamesList[1]}/>            
+            <GameCard game={gamesList[2]}/>            
+            <GameCard game={gamesList[3]}/>            
+          </div>
+          </div>
         </div>
       </div>
     )
