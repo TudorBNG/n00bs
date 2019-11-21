@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import HeaderNavbar from './navbars/HeaderNavbar';
 import Sidebar from './navbars/Sidebar';
-
 import '../styles/components/HomePage.scss';
+import GameCard from './GameCard';
 
 export default class HomePage extends Component {
 
@@ -17,6 +17,7 @@ export default class HomePage extends Component {
   }
 
   render() {
+    const gamesList = ['joc jmek', 'joc barbie', 'metin', 'agar.io'];
     return (
       <div className="Full-view">
         <div className="App-Container">
@@ -27,18 +28,10 @@ export default class HomePage extends Component {
             <Sidebar />
           
           <div className="Games-view">
-            <div>
-              lalala
-            </div>
-            <div>
-              lalala
-            </div>
-            <div>
-              lalala
-            </div>
-            {/*
-              //scrollable ul with game cards
-            */}
+            <GameCard game={gamesList[0]}/>    
+            <GameCard game={gamesList[1]}/>            
+            <GameCard game={gamesList[2]}/>            
+            <GameCard game={gamesList[3]}/>            
           </div>
           </div>
         </div>
