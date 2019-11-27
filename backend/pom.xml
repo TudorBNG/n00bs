@@ -8,6 +8,7 @@
     <artifactId>backend</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>Backend Parent</name>
     <modules>
         <module>backend-persistence</module>
         <module>backend-business</module>
