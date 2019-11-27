@@ -15,8 +15,10 @@ class HeaderNavbar extends Component {
         <Tooltip title="home">
         <img className='logo-img-style' alt='logo' src={require('../../images/logo.png')}></img>
         </Tooltip>
-        <button onClick={() => firebase.auth().signInWithPopup(googleAuthProvider)}><b>Login</b>with Google</button>
-                </div>
+        <div className="login-container">
+            <button className='login-button' onClick={() => firebase.auth().signInWithPopup(googleAuthProvider)}><img src="https://img.icons8.com/small/16/000000/google-logo.png"/><b>Login</b></button>
+        </div>
+      </div>
     );
   }
 }

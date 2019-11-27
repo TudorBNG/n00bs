@@ -10,3 +10,20 @@
     padding-left: 1vw;
     cursor: pointer;
 }
+
+.login-button{
+      display: inline-flex;
+      justify-content: space-around;
+      padding: 10px;
+      background:$orange;
+      color: thin solid black;
+      width: 100px;
+      height: 40px;
+      border-radius: 5px;
+      border: thin solid black;
+      white-space: nowrap;   
+}
+
+.login-container{
+    text-align: right;
+}
