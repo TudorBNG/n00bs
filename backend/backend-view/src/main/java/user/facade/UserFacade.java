@@ -21,4 +21,8 @@ public class UserFacade {
         return this.userController.getAllUsers();
     }
 
+    public void createUser(UserDto userDto){
+        this.userController.createUser(userDto);
+    }
+
 }

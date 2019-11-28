@@ -22,11 +22,24 @@ public class UserController {
     @EJB
     private UserConverter userConverter;
 
+    /**
+     * Converts the user entities from dao to dto
+     * @return <list>UserDto</list>
+     */
     public List<UserDto> getAllUsers(){
         return this.userDao.getAllUsers()
                 .stream()
-                .map(this.userConverter::convertEntityToDto)
+                .map(this.userConverter::convertUserEntityToUserDto)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Converts the user dto to entity
+     * Calls the persistUser method from dao using the converted entity as param
+     * @param userDto used in the conversion
+     */
+    public void createUser(UserDto userDto){
+        this.userDao.persistUser(this.userConverter.convertUserDtoToUserEntity(userDto));
     }
 
 }

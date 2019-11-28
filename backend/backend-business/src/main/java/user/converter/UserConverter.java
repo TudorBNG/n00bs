@@ -12,7 +12,30 @@ import javax.ejb.Stateless;
 @Stateless
 public class UserConverter {
 
-    public UserDto convertEntityToDto(UserEntity userEntity){
-        return new UserDto(userEntity.getUsername(), userEntity.getPassword());
+    /**
+     * Converts the user entity to dto
+     * @param userEntity used for the UserDto
+     * @return new UserDto
+     */
+    public UserDto convertUserEntityToUserDto(UserEntity userEntity){
+        return new UserDto(
+                userEntity.getUsername(),
+                userEntity.getEmail(),
+                userEntity.getUid()
+        );
+    }
+
+
+    /**
+     * Converts the user dto to entity
+     * @param userDto user for the UserEntity
+     * @return new UserEntity
+     */
+    public UserEntity convertUserDtoToUserEntity(UserDto userDto){
+        return new UserEntity(
+                userDto.getUsername(),
+                userDto.getEmail(),
+                userDto.getUid()
+        );
     }
 }

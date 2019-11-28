@@ -10,27 +10,33 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @NamedQueries(
-        @NamedQuery(name = UserEntity.GET_ALL_USERS, query = "Select user from UserEntity user")
+        {
+                @NamedQuery(name = UserEntity.GET_ALL_USERS, query = "Select user from UserEntity user")
+        }
 )
 public class UserEntity extends BaseEntity<Long> {
 
     //Query names
     public static final String GET_ALL_USERS = "UserEntity.getAllUsers";
 
-    @Column(name = "usernames", nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "passwords", nullable = false)
-    private String password;
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "uid", nullable = false)
+    private String uid;
 
     public UserEntity() {
     }
 
-    public UserEntity(String username, String password) {
+    public UserEntity(String username, String email, String uid) {
         this.username = username;
-        this.password = password;
+        this.email = email;
+        this.uid = uid;
     }
 
     public String getUsername() {
@@ -41,12 +47,20 @@ public class UserEntity extends BaseEntity<Long> {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String password) {
+        this.email = password;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     @Override
@@ -55,19 +69,21 @@ public class UserEntity extends BaseEntity<Long> {
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
         return Objects.equals(username, that.username) &&
-                Objects.equals(password, that.password);
+                Objects.equals(email, that.email) &&
+                Objects.equals(uid, that.uid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password);
+        return Objects.hash(username, email, uid);
     }
 
     @Override
     public String toString() {
         return "UserEntity{" +
                 "username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", uid='" + uid + '\'' +
                 '}';
     }
 }

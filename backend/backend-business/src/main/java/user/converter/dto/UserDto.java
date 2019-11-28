@@ -8,14 +8,17 @@ import java.util.Objects;
 
 public class UserDto {
     private String username;
-    private String password;
+    private String email;
+    private String uid;
 
     public UserDto() {
     }
 
-    public UserDto(String username, String password) {
+
+    public UserDto(String username, String email, String uid) {
         this.username = username;
-        this.password = password;
+        this.email = email;
+        this.uid = uid;
     }
 
     public String getUsername() {
@@ -26,12 +29,20 @@ public class UserDto {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     @Override
@@ -40,11 +51,21 @@ public class UserDto {
         if (o == null || getClass() != o.getClass()) return false;
         UserDto userDto = (UserDto) o;
         return Objects.equals(username, userDto.username) &&
-                Objects.equals(password, userDto.password);
+                Objects.equals(email, userDto.email) &&
+                Objects.equals(uid, userDto.uid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password);
+        return Objects.hash(username, email, uid);
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", uid='" + uid + '\'' +
+                '}';
     }
 }
