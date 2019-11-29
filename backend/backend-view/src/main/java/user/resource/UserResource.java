@@ -24,20 +24,15 @@ public class UserResource {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    @PermitAll
     public Response getAllUsers(){
-        return Response.ok(this.userFacade.getAllUsers())
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
-                .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With")
-                .build();
+        return Response.ok().entity(this.userFacade.getAllUsers()).build();
     }
 
     @POST
-    @PermitAll
+    @Path("/persist")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response get(UserDto userDto){
+    public Response createUser(UserDto userDto){
+        this.userFacade.createUser(userDto);
         return Response.ok().build();
     }
 }
