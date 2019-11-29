@@ -6,18 +6,62 @@ import GameCard from './GameCard';
 
 export default class HomePage extends Component {
 
-  componentDidMount() {
-    console.log("compodidmount");
-    fetch('http://localhost:8080/backend/noobs-api/user/all')
-      .then(res => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(console.log());
+  constructor(props) {
+    super(props);
+    
   }
 
+  state = {
+    gamesList: []
+  };
+
+  componentDidMount() {
+    console.log("compodidmount");
+    // fetch('http://localhost:8080/backend/noobs-api/game/all')
+    //   .then(res => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     this.setState(()=> {return {gamesList:data};} )
+    //     //this.state.gamesList = data;
+    //   })
+    //   .catch(console.log());
+      this.getGames()
+      .then((data)=>{
+        this.setState({
+          gamesList: data
+        })
+      })
+      .catch(err=>console.log(err))
+      console.log(this.state.gamesList)
+  }
+
+  getAllGames=()=>{
+    fetch('http://localhost:8080/backend/noobs-api/game/all')
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data);
+      this.setState(()=> {return {gamesList:data};} )
+      //this.state.gamesList = data;
+    })
+    .catch(console.log());
+  }
+
+  getGames() {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:8080/backend/noobs-api/game/all')
+            .then(res => res.json())
+            .then((data) => {
+                resolve(data);
+            })
+            .catch(err => reject(err));
+    })
+}
+
+
   render() {
-    const gamesList = ['joc jmek', 'joc barbie', 'metin', 'agar.io'];
+
+    //var games = this.state.gamesList;
+    const games = ["metin","heartstone","barbie"];
     return (
       <div className="Full-view">
         <div className="App-Container">
@@ -28,11 +72,18 @@ export default class HomePage extends Component {
             <Sidebar />
           
           <div className="Games-view">
-            <GameCard game={gamesList[0]}/>    
-            <GameCard game={gamesList[1]}/>            
-            <GameCard game={gamesList[2]}/>            
-            <GameCard game={gamesList[3]}/>            
-          </div>
+            {console.log(games)}
+            <GameCard game={games[1]}/>
+            <GameCard game={games[2]}/>
+            <GameCard game={games[0]}/>
+            <GameCard game={games[1]}/>
+
+
+            
+            {/* <GameCard game={this.state.gamesList[0].name}/> */}
+    {/* {games && <GameCard game={games[0]["name"]}/> }   
+            <GameCard game={this.state.gamesList[1].name}/>} */}
+            </div>
           </div>
         </div>
       </div>

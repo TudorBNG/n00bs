@@ -25,9 +25,11 @@ public class GameResource {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllGames(){
-        return Response
-                .status(Response.Status.OK)
+        return Response.status(Response.Status.OK)
                 .entity(this.gameFacade.getAllGames())
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                .allow("OPTIONS")
                 .build();
     }
 }
