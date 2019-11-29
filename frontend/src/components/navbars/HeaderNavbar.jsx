@@ -12,11 +12,13 @@ class HeaderNavbar extends Component {
   render() {
     return (
       <div className='toolbar-style'>
-        <Tooltip title="home">
-        <img className='logo-img-style' alt='logo' src={require('../../images/logo.png')}></img>
-        </Tooltip>
+        <div className="logo-container">
+          <Tooltip title="home">
+            <img className='logo-img-style' alt='logo' src={require('../../images/logo.png')}></img>
+          </Tooltip>
+        </div>
         <div className="login-container">
-            <button className='login-button' onClick={() => firebase.auth().signInWithPopup(googleAuthProvider)}><img src="https://img.icons8.com/small/16/000000/google-logo.png"/><b>Login</b></button>
+          <img alt='login' className="login-icon" onClick={() => firebase.auth().signInWithPopup(googleAuthProvider)} src={require('../../images/login.png')}></img>
         </div>
       </div>
     );

@@ -1,29 +1,61 @@
 @import '../colorPalette';
+@import '../fonts/noobs-font';
 
 .toolbar-style {
+    display: flex;
     background-color: $darkGray;
     width:70vw;
     border-radius: 15px;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+
 }
 .logo-img-style {
-    width: calc(10px + 20vmin);
+    //display: flex;
+    width: calc(10px + 20vw);
+    max-width: 15vw;
+    //width: 20vw;
+    //min-width: ;
     padding-left: 1vw;
     cursor: pointer;
+    max-height: 20vh;
 }
 
 .login-button{
-      display: inline-flex;
-      justify-content: space-around;
-      padding: 10px;
-      background:$orange;
-      color: thin solid black;
-      width: 100px;
-      height: 40px;
-      border-radius: 5px;
-      border: thin solid black;
-      white-space: nowrap;   
+    display: flex;
+    justify-content: space-around;
+    margin: 4vh;
+    background:$orange;
+    color: thin solid black;
+    height: 5vh;
+    width: 10vw;
+    max-width: 70px;
+    border-radius: 15px;
+    border: thin solid black;
+    white-space: nowrap; 
+    font-family: 'noobs-font';  
 }
 
+.login-icon{
+    display: flex;
+    justify-content: space-around;
+    margin: 3vh;
+    color: thin solid black;
+    width: 15vw;
+    white-space: nowrap; 
+    font-family: 'noobs-font';  
+}
+  
+
 .login-container{
-    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.logo-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
