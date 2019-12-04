@@ -4,11 +4,12 @@ import Sidebar from './navbars/Sidebar';
 import '../styles/components/HomePage.scss';
 import GameCard from './GameCard';
 
+
 export default class HomePage extends Component {
 
   constructor(props) {
     super(props);
-    
+    this.getGames = this.getGames.bind(this);
   }
 
   state = {
@@ -51,7 +52,7 @@ export default class HomePage extends Component {
         fetch('http://localhost:8080/backend/noobs-api/game/all')
             .then(res => res.json())
             .then((data) => {
-                resolve(data);
+                resolve(JSON.stringify(data));
             })
             .catch(err => reject(err));
     })
@@ -60,8 +61,8 @@ export default class HomePage extends Component {
 
   render() {
 
-    //var games = this.state.gamesList;
-    const games = ["metin","heartstone","barbie"];
+    const games = this.state.gamesList;
+    //const games = ["metin","heartstone","barbie"];
     return (
       <div className="Full-view">
         <div className="App-Container">
@@ -73,10 +74,13 @@ export default class HomePage extends Component {
           
           <div className="Games-view">
             {console.log(games)}
-            <GameCard game={games[1]}/>
-            <GameCard game={games[2]}/>
+            {this.state.gamesList!=null ? 
+            <GameCard game={this.state.gamesList[1].creator}/>
+          : <div>nop</div>
+          }
+           {/* <GameCard game={games[2]}/>
             <GameCard game={games[0]}/>
-            <GameCard game={games[1]}/>
+            <GameCard game={games[1]}/> */}
 
 
             
