@@ -3,7 +3,7 @@ import HeaderNavbar from './navbars/HeaderNavbar';
 import Sidebar from './navbars/Sidebar';
 import '../styles/components/HomePage.scss';
 import GameCard from './GameCard';
-
+import IGame from './Game.ts';
 
 export default class HomePage extends Component {
 
@@ -13,7 +13,7 @@ export default class HomePage extends Component {
   }
 
   state = {
-    gamesList: []
+    gamesList: [IGame]
   };
 
   componentDidMount() {
@@ -27,14 +27,26 @@ export default class HomePage extends Component {
     //   })
     //   .catch(console.log());
       this.getGames()
-      .then((data)=>{
+      .then((res)=>{
         this.setState({
-          gamesList: data
+          gamesList: res
         })
+        //this.setState({ gamesList: Object.values(res.data)});
       })
       .catch(err=>console.log(err))
       console.log(this.state.gamesList)
   }
+
+  // componentWillMount(){
+  //   this.getGames()
+  //     .then((data)=>{
+  //       this.setState({
+  //         gamesList: data
+  //       })
+  //     })
+  //     .catch(err=>console.log(err))
+  //     console.log(this.state.gamesList)
+  // }
 
   getAllGames=()=>{
     fetch('http://localhost:8080/backend/noobs-api/game/all')
@@ -52,7 +64,7 @@ export default class HomePage extends Component {
         fetch('http://localhost:8080/backend/noobs-api/game/all')
             .then(res => res.json())
             .then((data) => {
-                resolve(JSON.stringify(data));
+                resolve(data);
             })
             .catch(err => reject(err));
     })
@@ -75,7 +87,8 @@ export default class HomePage extends Component {
           <div className="Games-view">
             {console.log(games)}
             {this.state.gamesList!=null ? 
-            <GameCard game={this.state.gamesList[1].creator}/>
+            <GameCard game={this.state.gamesList[0].name}/>
+            
           : <div>nop</div>
           }
            {/* <GameCard game={games[2]}/>
