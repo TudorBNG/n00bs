@@ -3,7 +3,7 @@ import HeaderNavbar from './navbars/HeaderNavbar';
 import Sidebar from './navbars/Sidebar';
 import '../styles/components/HomePage.scss';
 import GameCard from './GameCard';
-import IGame from './Game.ts';
+import IGame from '../models/Game.ts';
 
 export default class HomePage extends Component {
 
@@ -18,63 +18,29 @@ export default class HomePage extends Component {
 
   componentDidMount() {
     console.log("compodidmount");
-    // fetch('http://localhost:8080/backend/noobs-api/game/all')
-    //   .then(res => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     this.setState(()=> {return {gamesList:data};} )
-    //     //this.state.gamesList = data;
-    //   })
-    //   .catch(console.log());
-      this.getGames()
-      .then((res)=>{
+    this.getGames()
+      .then((res) => {
         this.setState({
           gamesList: res
         })
-        //this.setState({ gamesList: Object.values(res.data)});
       })
-      .catch(err=>console.log(err))
-      console.log(this.state.gamesList)
-  }
-
-  // componentWillMount(){
-  //   this.getGames()
-  //     .then((data)=>{
-  //       this.setState({
-  //         gamesList: data
-  //       })
-  //     })
-  //     .catch(err=>console.log(err))
-  //     console.log(this.state.gamesList)
-  // }
-
-  getAllGames=()=>{
-    fetch('http://localhost:8080/backend/noobs-api/game/all')
-    .then(res => res.json())
-    .then((data) => {
-      console.log(data);
-      this.setState(()=> {return {gamesList:data};} )
-      //this.state.gamesList = data;
-    })
-    .catch(console.log());
+      .catch(err => console.log(err))
+    console.log(this.state.gamesList)
   }
 
   getGames() {
     return new Promise((resolve, reject) => {
-        fetch('http://localhost:8080/backend/noobs-api/game/all')
-            .then(res => res.json())
-            .then((data) => {
-                resolve(data);
-            })
-            .catch(err => reject(err));
+      fetch('http://localhost:8080/backend/noobs-api/game/all')
+        .then(res => res.json())
+        .then((data) => {
+          resolve(data);
+        })
+        .catch(err => reject(err));
     })
-}
+  }
 
 
   render() {
-
-    const games = this.state.gamesList;
-    //const games = ["metin","heartstone","barbie"];
     return (
       <div className="Full-view">
         <div className="App-Container">
@@ -83,23 +49,11 @@ export default class HomePage extends Component {
           </div>
           <div className="App-body">
             <Sidebar />
-          
-          <div className="Games-view">
-            {console.log(games)}
-            {this.state.gamesList!=null ? 
-            <GameCard game={this.state.gamesList[0].name}/>
-            
-          : <div>nop</div>
-          }
-           {/* <GameCard game={games[2]}/>
-            <GameCard game={games[0]}/>
-            <GameCard game={games[1]}/> */}
-
-
-            
-            {/* <GameCard game={this.state.gamesList[0].name}/> */}
-    {/* {games && <GameCard game={games[0]["name"]}/> }   
-            <GameCard game={this.state.gamesList[1].name}/>} */}
+            <div className="Games-view">
+              {this.state.gamesList != null &&
+                this.state.gamesList.map(game => {
+                  return <GameCard game={game} />
+                })}
             </div>
           </div>
         </div>
