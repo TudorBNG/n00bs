@@ -3,7 +3,6 @@ package user.resource;
 import user.converter.dto.UserDto;
 import user.facade.UserFacade;
 
-import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
@@ -25,14 +24,20 @@ public class UserResource {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllUsers(){
-        return Response.ok().entity(this.userFacade.getAllUsers()).build();
+        return Response
+                .ok()
+                .entity(this.userFacade.getAllUsers())
+                .build();
     }
 
     @POST
     @Path("/persist")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(UserDto userDto){
-        this.userFacade.createUser(userDto);
-        return Response.ok().build();
+        this.userFacade
+                .createUser(userDto);
+        return Response
+                .ok()
+                .build();
     }
 }
