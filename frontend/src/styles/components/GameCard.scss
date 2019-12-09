@@ -28,3 +28,19 @@
     height: 100%;
     padding: 15px;
 }
+
+.title-rating{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.description-container{
+}
+
+.content-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
