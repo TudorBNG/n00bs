@@ -3,10 +3,6 @@ import '../../styles/components/Sidebar.scss';
 
 class Sidebar extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
       const filters = ['action','music','mistery'];
     return (
