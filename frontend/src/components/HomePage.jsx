@@ -3,7 +3,10 @@ import HeaderNavbar from './navbars/HeaderNavbar';
 import Sidebar from './navbars/Sidebar';
 import '../styles/components/HomePage.scss';
 import GameCard from './GameCard';
+import GamePage from './GamePage';
+
 import IGame from '../models/Game.ts';
+import { BrowserRouter as Router, Route, HashRouter, Link, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 
 export default class HomePage extends Component {
 
@@ -13,7 +16,8 @@ export default class HomePage extends Component {
   }
 
   state = {
-    gamesList: [IGame]
+    gamesList: [IGame],
+    redirect: false
   };
 
   componentDidMount() {
@@ -26,6 +30,14 @@ export default class HomePage extends Component {
       })
       .catch(err => console.log(err))
     console.log(this.state.gamesList)
+  }
+
+  onCardClick = () => {
+    console.log("clicked on game")
+    this.setState({
+      redirect: true
+    })
+
   }
 
   getGames() {
@@ -41,6 +53,9 @@ export default class HomePage extends Component {
 
 
   render() {
+    if (this.state.redirect) {
+      return <BrowserRouter><Link to="/gamePage" component={GamePage} /></BrowserRouter>;
+    }
     return (
       <div className="Full-view">
         <div className="App-Container">
@@ -52,7 +67,7 @@ export default class HomePage extends Component {
             <div className="Games-view">
               {this.state.gamesList != null &&
                 this.state.gamesList.map(game => {
-                  return <GameCard game={game} />
+                  return <a onClick={this.onCardClick}><GameCard game={game} /></a>
                 })}
             </div>
           </div>
