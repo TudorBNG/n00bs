@@ -34,12 +34,13 @@ class HeaderNavbar extends Component {
           </Tooltip>
         </Col>
         <Col md="7" sm="6" className="justify-content-right">
-          <div className="float-right">
-          {!this.state.user && <button className='login-button' onClick={() => firebase.auth().signInWithPopup(googleAuthProvider)}><img src="https://img.icons8.com/small/16/000000/google-logo.png" /><b>Login</b></button>}
-          {this.state.user && <button className='login-button' onClick={() => firebase.auth().signOut()}><b>Log out</b></button>}
+          <div className="float-right navbar-icons">
+            {/* toDo: clickable username for info */}
+          {this.state.user && <div className="user-name">{this.state.user.displayName.toUpperCase()}</div>}
+          {!this.state.user && <button className='btn btn-2 btn-2g' onClick={() => firebase.auth().signInWithPopup(googleAuthProvider)}><img src="https://img.icons8.com/small/16/000000/google-logo.png" /><b>Login</b></button>}
+          {this.state.user && <button className='btn btn-2 btn-2g' onClick={() => firebase.auth().signOut()}><b>Log out</b></button>}
           </div>
         </Col>
-        {this.state.user && <div>{this.state.user.displayName}</div>}
         </Row>
       </Container>
     );
