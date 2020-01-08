@@ -7,6 +7,7 @@ import './styles/fonts/coolvetica-rg.ttf';
 import { firebase } from './firebase/firebase';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 //ReactDOM.render(<LoadingPage />, document.getElementById('root'));

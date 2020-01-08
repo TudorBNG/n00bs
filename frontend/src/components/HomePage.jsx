@@ -5,6 +5,9 @@ import '../styles/components/HomePage.scss';
 import GameCard from './GameCard';
 import GamePage from './GamePage';
 import IGame from '../models/Game.ts';
+import {Image, Col, Row, Container} from 'react-bootstrap';
+
+
 
 export default class HomePage extends Component {
 
@@ -49,20 +52,22 @@ export default class HomePage extends Component {
   render() {
     return (
       <div className="Full-view">
-        <div className="App-Container">
-          <div className="App-header">
+        <Container>
+          <Row noGutters>
             <HeaderNavbar />
-          </div>
-          <div className="App-body">
+          </Row>
+          <Container className="Homepage-body">
             <Sidebar />
-            <div className="Games-view">
+            <Container className="Cards-container">
+            <div className="gamecard-container">
               {this.state.gamesList != null &&
                 this.state.gamesList.map(game => {
                   return <a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a>
                 })}
             </div>
-          </div>
-        </div>
+            </Container>
+          </Container>
+        </Container>
       </div>
     )
   }

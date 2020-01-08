@@ -2,6 +2,7 @@
 @import '../fonts/noobs-font';
 
 .sidebar-style{
+    //margin-left: 1vw;
     flex-direction: column;
     display: flex;
     flex:1;
@@ -9,8 +10,9 @@
     border-radius: 15px;
     align-items: center;
     height: 97%;
-    max-width: 15vw;
+    width: 15%;
     overflow-y: scroll;
+    float: left;
     
     //font styles
     color: white;

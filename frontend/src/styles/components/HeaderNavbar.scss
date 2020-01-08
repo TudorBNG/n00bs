@@ -2,13 +2,9 @@
 @import '../fonts/noobs-font';
 
 .toolbar-style {
-    display: flex;
     background-color: $darkGray;
-    width:70vw;
-    border-radius: 15px;
-    justify-content: space-between;
+    border-radius: 10px;
     align-content: center;
-    flex-direction: row;
 
 }
 .logo-img-style {
@@ -23,14 +19,11 @@
 }
 
 .login-button{
-    display: flex;
-    justify-content: space-around;
     margin: 4vh;
     background:$orange;
     color: thin solid black;
     height: 5vh;
     width: 10vw;
-    max-width: 70px;
     border-radius: 15px;
     border: thin solid black;
     white-space: nowrap; 
