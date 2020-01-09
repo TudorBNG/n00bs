@@ -3,8 +3,10 @@
 
 .toolbar-style {
     background-color: $darkGray;
-    border-radius: 10px;
+    border-radius: 15px;
     align-content: center;
+    box-shadow: 0 7px #222222;
+    margin-bottom: 2vh;
 
 }
 .logo-img-style {
@@ -32,7 +34,7 @@
     padding-right: 1vw;
     padding-left: 1vw;
     text-align: right;
-    box-shadow: 0 4px #3cab4f;
+    box-shadow: 0 4px $green;
   }
 
 // .login-button{
@@ -68,7 +70,7 @@
 }
 
 .btn-2g:hover {
-	box-shadow: 0 4px #ab3c3c;
+	box-shadow: 0 4px $red;
 	top: 2px;
 }
 
@@ -79,7 +81,7 @@
 .btn-2 {
 	background: $orange !important;
 	color: #fff;
-	box-shadow: 0 6px #ab3c3c;
+	box-shadow: 0 6px $red;
 	-webkit-transition: none;
 	-moz-transition: none;
 	transition: none;

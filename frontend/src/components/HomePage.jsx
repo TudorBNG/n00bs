@@ -59,12 +59,10 @@ export default class HomePage extends Component {
           <Container className="Homepage-body">
             <Sidebar />
             <Container className="Cards-container">
-            <div className="gamecard-container">
               {this.state.gamesList != null &&
                 this.state.gamesList.map(game => {
-                  return <a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a>
+                  return <div className="gamecard-container"><a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a></div>
                 })}
-            </div>
             </Container>
           </Container>
         </Container>
