@@ -58,7 +58,6 @@ CREATE TABLE IF NOT EXISTS `n00bs`.`comment_rating` (
   `comment` VARCHAR(256) NULL DEFAULT NULL,
   `rating` FLOAT NULL DEFAULT NULL,
   PRIMARY KEY (`id_user`, `id_game`),
-  INDEX `fk_comment_game` (`id_game` ASC) VISIBLE,
   CONSTRAINT `fk_comment_game`
     FOREIGN KEY (`id_game`)
     REFERENCES `n00bs`.`games` (`id`)
@@ -91,7 +90,6 @@ CREATE TABLE IF NOT EXISTS `n00bs`.`games_companies` (
   `id_game` BIGINT(25) NOT NULL,
   `id_company` BIGINT(25) NOT NULL,
   PRIMARY KEY (`id_game`, `id_company`),
-  INDEX `FK_games_companies` (`id_company` ASC) VISIBLE,
   CONSTRAINT `FK_games_companies`
     FOREIGN KEY (`id_company`)
     REFERENCES `n00bs`.`companies` (`id`)
@@ -125,7 +123,6 @@ CREATE TABLE IF NOT EXISTS `n00bs`.`games_genres` (
   `game_id` BIGINT(20) NOT NULL,
   `genre_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`game_id`, `genre_id`),
-  INDEX `fk_games_genres_genre` (`genre_id` ASC) VISIBLE,
   CONSTRAINT `fk_games_genres_game`
     FOREIGN KEY (`game_id`)
     REFERENCES `n00bs`.`games` (`id`)
@@ -158,7 +155,6 @@ CREATE TABLE IF NOT EXISTS `n00bs`.`games_platforms` (
   `game_id` BIGINT(20) NOT NULL,
   `platform_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`game_id`, `platform_id`),
-  INDEX `FK_games_platforms_platform_id` (`platform_id` ASC) VISIBLE,
   CONSTRAINT `FK_games_platforms_game_id`
     FOREIGN KEY (`game_id`)
     REFERENCES `n00bs`.`games` (`id`),
@@ -177,7 +173,6 @@ CREATE TABLE IF NOT EXISTS `n00bs`.`orders` (
   `number` VARCHAR(255) NOT NULL,
   `user_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `FK_orders_users_user_id` (`user_id` ASC) VISIBLE,
   CONSTRAINT `FK_orders_users_user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `n00bs`.`users` (`id`))
@@ -192,7 +187,6 @@ CREATE TABLE IF NOT EXISTS `n00bs`.`orders_games` (
   `order_id` BIGINT(20) NOT NULL,
   `game_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`order_id`, `game_id`),
-  INDEX `FK_orders_games_game_id` (`game_id` ASC) VISIBLE,
   CONSTRAINT `FK_orders_games_game_id`
     FOREIGN KEY (`game_id`)
     REFERENCES `n00bs`.`games` (`id`),
@@ -212,7 +206,6 @@ CREATE TABLE IF NOT EXISTS `n00bs`.`users_games` (
   `rating` FLOAT NOT NULL,
   `review` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`, `game_id`),
-  INDEX `FK_users_games_game_id` (`game_id` ASC) VISIBLE,
   CONSTRAINT `FK_users_games_game_id`
     FOREIGN KEY (`game_id`)
     REFERENCES `n00bs`.`games` (`id`),
@@ -230,7 +223,6 @@ CREATE TABLE IF NOT EXISTS `n00bs`.`wishlist` (
   `id_user` BIGINT(20) NOT NULL,
   `id_game` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id_user`, `id_game`),
-  INDEX `fk_wishlist_game` (`id_game` ASC) VISIBLE,
   CONSTRAINT `fk_wishlist_game`
     FOREIGN KEY (`id_game`)
     REFERENCES `n00bs`.`games` (`id`)
