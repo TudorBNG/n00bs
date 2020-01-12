@@ -50,6 +50,7 @@ export default class HomePage extends Component {
 
 
   render() {
+    let i = 0;
     return (
       <div className="Full-view">
         <Container>
@@ -60,6 +61,14 @@ export default class HomePage extends Component {
             <Sidebar />
             <Container className="Cards-container">
               {this.state.gamesList != null &&
+                this.state.gamesList.map(game => {
+                  return <div className="gamecard-container"><a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a></div>
+                })}
+                {this.state.gamesList != null &&
+                this.state.gamesList.map(game => {
+                  return <div className="gamecard-container"><a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a></div>
+                })}
+                {this.state.gamesList != null &&
                 this.state.gamesList.map(game => {
                   return <div className="gamecard-container"><a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a></div>
                 })}
