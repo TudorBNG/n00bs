@@ -64,14 +64,6 @@ export default class HomePage extends Component {
                 this.state.gamesList.map(game => {
                   return <div className="gamecard-container"><a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a></div>
                 })}
-                {this.state.gamesList != null &&
-                this.state.gamesList.map(game => {
-                  return <div className="gamecard-container"><a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a></div>
-                })}
-                {this.state.gamesList != null &&
-                this.state.gamesList.map(game => {
-                  return <div className="gamecard-container"><a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a></div>
-                })}
             </Container>
           </Container>
         </Container>

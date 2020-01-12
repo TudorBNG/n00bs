@@ -47,6 +47,10 @@
 // $random: random(3);
 // @return '$'+nth($colors,$random)
 // }
+.Cards-container{
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
 
 .gamecard-container:hover {
   transform: scale(0.9, 0.9);
