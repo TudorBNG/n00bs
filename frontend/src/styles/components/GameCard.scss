@@ -50,6 +50,7 @@
 .Cards-container{
   overflow-y: scroll;
   scrollbar-width: none;
+  max-height: 120vh;
 }
 
 .gamecard-container:hover {
