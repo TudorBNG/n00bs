@@ -22,11 +22,14 @@ public class GameEntity extends BaseEntity<Long> {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "creator", nullable = false)
-    private String creator;
+    @Column(name = "release_date", nullable = false)
+    private String release_date;
 
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "summary", nullable = false)
+    private String summary;
+
+    @Column(name = "cover_url", nullable = false)
+    private String cover_url;
 
     @Column(name = "rating", nullable = false)
     private Float rating;
@@ -34,11 +37,36 @@ public class GameEntity extends BaseEntity<Long> {
     public GameEntity() {
     }
 
-    public GameEntity(String name, String creator, String description, Float rating) {
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getCover_url() {
+        return cover_url;
+    }
+
+    public void setCover_url(String cover_url) {
+        this.cover_url = cover_url;
+    }
+
+    public GameEntity(String name, String release_date, String summary, Float rating, String cover_url) {
         this.name = name;
-        this.creator = creator;
-        this.description = description;
+        this.release_date = release_date;
+        this.summary = summary;
         this.rating = rating;
+        this.cover_url = cover_url;
     }
 
     public String getName() {
@@ -47,22 +75,6 @@ public class GameEntity extends BaseEntity<Long> {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Float getRating() {
@@ -79,22 +91,23 @@ public class GameEntity extends BaseEntity<Long> {
         if (o == null || getClass() != o.getClass()) return false;
         GameEntity that = (GameEntity) o;
         return Objects.equals(name, that.name) &&
-                Objects.equals(creator, that.creator) &&
-                Objects.equals(description, that.description) &&
+                Objects.equals(release_date, that.release_date) &&
+                Objects.equals(summary, that.summary) &&
+                Objects.equals(cover_url, that.cover_url) &&
                 Objects.equals(rating, that.rating);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, creator, description, rating);
+        return Objects.hash(name, release_date, summary, rating, cover_url);
     }
 
     @Override
     public String toString() {
         return "GameEntity{" +
                 "name='" + name + '\'' +
-                ", creator='" + creator + '\'' +
-                ", description='" + description + '\'' +
+                ", release_date='" + release_date + '\'' +
+                ", summary='" + summary + '\'' +
                 ", rating=" + rating +
                 '}';
     }

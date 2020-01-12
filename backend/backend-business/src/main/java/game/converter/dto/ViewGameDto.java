@@ -9,20 +9,23 @@ public class ViewGameDto {
 
     private String name;
 
-    private String creator;
+    private String release_date;
 
-    private String description;
+    private String summary;
 
     private Float rating;
+
+    private String cover_url;
 
     public ViewGameDto() {
     }
 
-    public ViewGameDto(String name, String creator, String description, Float rating) {
+    public ViewGameDto(String name, String release_date, String summary, Float rating, String cover_url) {
         this.name = name;
-        this.creator = creator;
-        this.description = description;
+        this.release_date = release_date;
+        this.summary = summary;
         this.rating = rating;
+        this.cover_url = cover_url;
     }
 
     public String getName() {
@@ -33,20 +36,20 @@ public class ViewGameDto {
         this.name = name;
     }
 
-    public String getCreator() {
-        return creator;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setCreator(String creator) {
-        this.creator = creator;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public Float getRating() {
@@ -57,28 +60,37 @@ public class ViewGameDto {
         this.rating = rating;
     }
 
+    public String getCover_url() {
+        return cover_url;
+    }
+
+    public void setCover_url(String cover_url) {
+        this.cover_url = cover_url;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ViewGameDto that = (ViewGameDto) o;
         return Objects.equals(name, that.name) &&
-                Objects.equals(creator, that.creator) &&
-                Objects.equals(description, that.description) &&
+                Objects.equals(release_date, that.release_date) &&
+                Objects.equals(summary, that.summary) &&
+                Objects.equals(cover_url, that.cover_url) &&
                 Objects.equals(rating, that.rating);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, creator, description, rating);
+        return Objects.hash(name, release_date, summary, rating, cover_url);
     }
 
     @Override
     public String toString() {
         return "ViewGameDto{" +
                 "name='" + name + '\'' +
-                ", creator='" + creator + '\'' +
-                ", description='" + description + '\'' +
+                ", release_date='" + release_date + '\'' +
+                ", summary='" + summary + '\'' +
                 ", rating=" + rating +
                 '}';
     }
