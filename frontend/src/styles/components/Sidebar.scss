@@ -42,6 +42,8 @@
 
 .sidebar-row:hover{
     transform: scale(0.8, 0.8);
+    transition-duration: 0.5s;
+    transition-delay: 15ms;
     background-color: #f86110cc;
     color: $white;
 }
