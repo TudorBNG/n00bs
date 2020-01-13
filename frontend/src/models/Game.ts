@@ -1,6 +1,7 @@
 export interface IGame {
     name: string;
-    creator: string;
+    release_date: string;
     rating: number;
-    description: string;
+    summary: string;
+    cover_url: string;
 }

@@ -6,11 +6,14 @@ import StarRatings from 'react-star-ratings';
 
 class GamePage extends Component {
 
+
 componentDidMount() {
-    console.log("compmounted")
+    
+    console.log()
 }
 
     render() {
+        const game = this.props.location.state.game;
         return (
             <div className="Full-view">
                 <Container>
@@ -20,12 +23,12 @@ componentDidMount() {
                     <Container>
                         <Row className="Game-div justify-content-center" noGutters>
                             <Col>
-                            <Image className="Game-image" src="" alt="Game Image"></Image>
+                            <Image className="Game-image" src={game.cover_url} alt="Game Image"></Image>
                             </Col>
                             <Col>
                                 <h1>Titlu</h1>
                                 <StarRatings
-                                //rating={}
+                                rating={game.rating}
                                 starRatedColor="#F86210"
                                 //changeRating={}
                                 numberOfStars={5}
@@ -33,7 +36,7 @@ componentDidMount() {
                                 starDimension="15px"
                                 starSpacing="2px"
                                 />
-                                <p>Description</p>
+                                <p>{game.summary}</p>
                             </Col>
                         </Row>
                     </Container>

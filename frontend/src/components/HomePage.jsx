@@ -6,6 +6,7 @@ import GameCard from './GameCard';
 import GamePage from './GamePage';
 import IGame from '../models/Game.ts';
 import {Image, Col, Row, Container} from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 
@@ -29,12 +30,6 @@ export default class HomePage extends Component {
         })
       })
       .catch(err => console.log(err))
-    console.log(this.state.gamesList)
-  }
-
-  onCardClick = () => {
-    console.log("clicked on game")
-    this.props.history.push('/game-page')
   }
 
   getGames() {
@@ -62,7 +57,7 @@ export default class HomePage extends Component {
             <Container className="Cards-container">
               {this.state.gamesList != null &&
                 this.state.gamesList.map(game => {
-                  return <div className="gamecard-container"><a className="gamecard-style" onClick={this.onCardClick}><GameCard game={game} /></a></div>
+                  return <div className="gamecard-container"><Link to={{pathname: '/game-page', state: {game: game}}} className="gamecard-style" /*onClick={this.onCardClick}*/><GameCard game={game} /></Link></div>
                 })}
             </Container>
           </Container>

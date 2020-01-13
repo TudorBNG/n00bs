@@ -3,7 +3,7 @@ import '../styles/components/GameCard.scss';
 import '../models/Game.ts';
 import StarRatings from 'react-star-ratings';
 import { number } from 'prop-types';
-
+import {Image, Col} from 'react-bootstrap';
 
 class GameCard extends Component {
 
@@ -16,14 +16,14 @@ class GameCard extends Component {
     return (
       <div className='gamecard-style'>
 
-        <div className="photo-container">
-          photo
-        </div>
+        <Col md={3} className="photo-container">
+          <Image src={game.cover_url} className='gamecard-image'></Image>
+        </Col>
 
-        <div className="content-container">
+        <Col md={9} className="content-container">
           <span className="title-rating">
             <div>
-              {game.name}
+              <h1>{game.name}</h1>
             </div>
             <div>
               <StarRatings
@@ -36,11 +36,12 @@ class GameCard extends Component {
                 starSpacing="2px"
               />
             </div>
+
           </span>
           <div className="description-container">
-            {game.description}
+            <p className="description">{game.summary}</p>
           </div>
-        </div>
+        </Col>
 
       </div>
     );

@@ -17,7 +17,6 @@ class HeaderNavbar extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
       this.setState(() => { return { user: user }; });
     })
   }
