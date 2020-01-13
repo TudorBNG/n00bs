@@ -1,0 +1,49 @@
+@import '../colorPalette';
+@import '../fonts/noobs-font';
+
+.Game-div{
+background-color: $darkGray;
+border-radius: 30px;
+box-shadow: 0 7px #222222;
+margin-top: 3vh;
+padding: 2vh;
+}
+
+.more-info-div{
+    background-color: $darkGray;
+border-radius: 30px;
+box-shadow: 0 7px #222222;
+margin-top: 3vh;
+padding: 2vh
+}
+
+.review-div{
+    background-color: $darkGray;
+border-radius: 30px;
+box-shadow: 0 7px #222222;
+margin-top: 3vh;
+padding: 2vh
+}
+
+.reccomending-div{
+    background-color: $darkGray;
+border-radius: 30px;
+box-shadow: 0 7px #222222;
+margin-top: 3vh;
+padding: 2vh
+}
+
+.Game-image{
+border-radius: 18px;
+}
+
+.game-page-content{
+    font-family: 'noobs-font';
+    color: white;
+    font-weight: 100;
+
+}
+
+.game-page-title{
+    font-size: 3rem;
+}

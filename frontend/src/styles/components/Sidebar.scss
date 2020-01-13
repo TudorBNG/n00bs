@@ -26,13 +26,14 @@
 
 .row-active{
     transform: scale(0.8, 0.8);
-    background-color: #f86110cc;
+    background-color: $green !important;
     color: $white;
 }
 
 .sidebar-row{
+    cursor: pointer;
     font-size: larger;
-    letter-spacing: 2px;
+    //letter-spacing: 2px;
     border-radius: 4px;
     margin: 2px 8px;
     width: 100px;
