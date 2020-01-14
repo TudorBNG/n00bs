@@ -1,23 +1,54 @@
 import React, { Component } from 'react';
 import '../../styles/components/Sidebar.scss';
+import IGenre from '../../models/Genre.ts';
 import $ from 'jquery';
 
 class Sidebar extends Component {
 
-  componentDidMount(){
-    $('.sidebar-row').click(function(){
+  constructor(props) {
+    super(props);
+    this.getGenres = this.getGenres.bind(this);
+  }
+
+  state = {
+    genresList: [IGenre]
+  };
+
+  componentDidMount() {
+    this.getGenres()
+      .then((res) => {
+        this.setState({
+          genresList: res
+        })
+        console.log(res)
+      })
+      .catch(err => console.log(err))
+
+    $('.sidebar-row').click(function () {
       if ($(this).hasClass('row-active'))
-      $(this).removeClass('row-active');
+        $(this).removeClass('row-active');
       else
-      $(this).addClass('row-active');
+        $(this).addClass('row-active');
     });
   }
 
-  createSidebar = () =>{
-    const filters = ['action','music','mistery'];
+  getGenres() {
+    return new Promise((resolve, reject) => {
+      fetch('http://localhost:8080/backend/noobs-api/genre/all')
+        .then(res => res.json())
+        .then((data) => {
+          resolve(data);
+        })
+        .catch(err => reject(err));
+    })
+  }
+
+  createSidebar = () => {
+    //const filters = this.state.genresList;
     let sidebar = [];
-    for(let i = 0; i<30*filters.length;i++){
-    sidebar.push(<li class="sidebar-row">{filters[i%3].toUpperCase()}</li>)
+
+    for (let i = 0; i < this.state.genresList.length; i++) {
+      sidebar.push(<li class="sidebar-row">{this.state.genresList[i].name}</li>)
     }
     return sidebar
   }
@@ -25,7 +56,7 @@ class Sidebar extends Component {
 
     return (
       <ul className='sidebar-style'>
-        {this.createSidebar()}
+        {this.state.genresList && this.createSidebar()}
       </ul>
     );
   }

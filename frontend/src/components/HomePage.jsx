@@ -32,6 +32,7 @@ export default class HomePage extends Component {
         })
       })
       .catch(err => console.log(err))
+
   }
 
   handleNextPage = () => {
@@ -50,8 +51,6 @@ export default class HomePage extends Component {
     });
   }
 
-
-
   getGames() {
     return new Promise((resolve, reject) => {
       fetch('http://localhost:8080/backend/noobs-api/game/all')
@@ -63,22 +62,7 @@ export default class HomePage extends Component {
     })
   }
 
-  getPaginationItems = () => {
-    let active = 1;
-    let items = [];
-    let list = this.state.gamesList;
-    console.log(list)
-    for (let number = 1; number <= 5; number++) {
-      let game = list[number]
-      items.push(
-        <Pagination.Item key={game.name} active={number === active}><div className="gamecard-container"><Link to={{ pathname: '/game-page', state: { game: game } }} className="gamecard-style" /*onClick={this.onCardClick}*/><GameCard game={game} /></Link></div></Pagination.Item>
-      ,
-      );
-    }
-    var element = document.getElementsByClassName("page-link");
-    element.classList.remove();
-    return items
-  }
+
 
   render() {
     let i = 0;
