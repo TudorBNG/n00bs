@@ -48,7 +48,7 @@ class Sidebar extends Component {
     let sidebar = [];
 
     for (let i = 0; i < this.state.genresList.length; i++) {
-      sidebar.push(<li class="sidebar-row">{this.state.genresList[i].name}</li>)
+      sidebar.push(<li key={i} class="sidebar-row">{this.state.genresList[i].name}</li>)
     }
     return sidebar
   }
