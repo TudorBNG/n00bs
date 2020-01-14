@@ -101,7 +101,7 @@ class HeaderNavbar extends Component {
               {this.state.user &&
                 <Tooltip title="wishlist">
                   <a href="/wishlist">
-                    <Image className='wishlist-img-style' alt='wishlist' src={require('../../images/star1.png')}></Image>
+                    <Image className='wishlist-img-style' alt='wishlist' src={require('../../images/starr.png')}></Image>
                   </a>
                 </Tooltip>
               }
