@@ -23,6 +23,12 @@ class HeaderNavbar extends Component {
   }
 
   addUser(userDto) {
+    /////////////////////////////////////////////////////////////
+    //TODO: 
+    //backend: verify if user exists -> add to db otherwise
+    ///////////////////////////////////////////////////////////
+
+
     const apiHeaders = {
       'Content-Type': 'application/json',
       //'Accept': 'application/json',
@@ -84,19 +90,21 @@ class HeaderNavbar extends Component {
               </a>
             </Tooltip>
           </Col>
-          <Col md="5" sm="6" className="">
-            <Tooltip title="wishlist">
-              <a href="/">
-                <Image className='logo-img-style' alt='wishlist' src={require('../../images/star.png')}></Image>
-              </a>
-            </Tooltip>
-          </Col>
+
           <Col md="7" sm="6" className="justify-content-right">
+
             <div className="float-right navbar-icons">
               {/* toDo: clickable username for info */}
               {this.state.user && <div className="user-name">{this.state.user.displayName.toUpperCase()}</div>}
               {!this.state.user && <button className='btn btn-2 btn-2g' onClick={() => this.onClickLogin()}><img src="https://img.icons8.com/small/16/000000/google-logo.png" /><b>Login</b></button>}
               {this.state.user && <button className='btn btn-2 btn-2g' onClick={() => firebase.auth().signOut()}><b>Log out</b></button>}
+              {this.state.user &&
+                <Tooltip title="wishlist">
+                  <a href="/wishlist">
+                    <Image className='wishlist-img-style' alt='wishlist' src={require('../../images/star1.png')}></Image>
+                  </a>
+                </Tooltip>
+              }
             </div>
           </Col>
         </Row>

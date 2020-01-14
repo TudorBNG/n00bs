@@ -18,8 +18,25 @@
     //max-height: 20vh;
 }
 
+.wishlist-img-style {
+    //display: flex;
+    //width: calc(10px + 20vw);
+    max-width: 4vw;
+    cursor: pointer;
+    padding-right: 1vw;
+}
+
+.wishlist-img-style:hover{
+    transform: scale(0.8, 0.8);
+    transition-duration: 0.5s;
+    transition-delay: 15ms;
+    color: $white;
+}
+
 .navbar-icons{
     height:100%;
+    padding-right: 3vw;
+    padding-top:1vh;
     //margin-right: 1vw;
 }
 .user-name{
@@ -33,7 +50,7 @@
     border-radius: 12px;
     padding-right: 1vw;
     padding-left: 1vw;
-    text-align: right;
+    text-align: center;
     box-shadow: 0 4px $green;
   }
 
