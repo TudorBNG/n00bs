@@ -2,16 +2,55 @@ import React, { Component } from 'react';
 import HeaderNavbar from './navbars/HeaderNavbar';
 import { Image, Col, Row, Container } from 'react-bootstrap';
 import StarRatings from 'react-star-ratings';
-import '../styles/components/GamePage.scss'
+import '../styles/components/GamePage.scss';
+import { user } from "./User";
+import IUser from '../models/User.ts';
+
+
 //import { Container } from '@material-ui/core';
 
 class GamePage extends Component {
 
+    constructor(props) {
+        super(props);
+        //this.addToWishlist = this.addToWishlist.bind(this)
+    }
+    state = {
+        email: null
+    };
+
+    onStorage = () => {
+        console.log("onStorage")
+        this.setState({
+            email: localStorage.getItem('email')
+        })
+        // Receive changes in the localStorage
+    }
 
     componentDidMount() {
+        this.setState({
+            email: localStorage.getItem('email')
+        })
+        console.log(this.state.email)
+
+        if (window.addEventListener) {
+            window.addEventListener("storage", this.onStorage, false);
+        } else {
+            window.attachEvent("onstorage", this.onStorage);
+        };
+
+
+
         ////////////////////////////////
         /// TODO
         /// game id sa fie in fe pentru fetch uri de add to wishlist
+    }
+
+    addToWishlist = () => {
+        console.log("addToWishlist")
+        let mail = this.state.email
+        console.log(mail)
+
     }
 
     render() {
@@ -29,9 +68,11 @@ class GamePage extends Component {
                             </Col>
                             <Col md={8} className="game-page-content">
                                 <h1 className="game-page-title">{game.name}
-                                    <a href={console.log("addToWishlist")} title="add to wishlist">
-                                        <Image className='addWishlist-img-style' alt='addToWishlist' src={require('../images/stars.png')}></Image>
-                                    </a>
+                                    {this.state.email &&
+                                        <a onClick={this.addToWishlist} title="add to wishlist">
+                                            <Image className='addWishlist-img-style' alt='addToWishlist' src={require('../images/stars.png')}></Image>
+                                        </a>
+                                    }
                                 </h1>
                                 <h6>{game.release_date}</h6>
                                 <StarRatings
