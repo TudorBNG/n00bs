@@ -1,4 +1,5 @@
 export interface IGame {
+    id: number,
     name: string;
     release_date: string;
     rating: number;

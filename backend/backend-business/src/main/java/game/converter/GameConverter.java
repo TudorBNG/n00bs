@@ -19,6 +19,7 @@ public class GameConverter {
      */
     public ViewGameDto convertGameEntityToViewGameDto(GameEntity gameEntity){
         return new ViewGameDto(
+                gameEntity.getId(),
                 gameEntity.getName(),
                 gameEntity.getRelease_date(),
                 gameEntity.getSummary(),

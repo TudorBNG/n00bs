@@ -7,6 +7,8 @@ import java.util.Objects;
  */
 public class ViewGameDto {
 
+    private Long id;
+
     private String name;
 
     private String release_date;
@@ -20,7 +22,8 @@ public class ViewGameDto {
     public ViewGameDto() {
     }
 
-    public ViewGameDto(String name, String release_date, String summary, Float rating, String cover_url) {
+    public ViewGameDto(Long id, String name, String release_date, String summary, Float rating, String cover_url) {
+        this.id = id;
         this.name = name;
         this.release_date = release_date;
         this.summary = summary;
@@ -76,22 +79,33 @@ public class ViewGameDto {
         return Objects.equals(name, that.name) &&
                 Objects.equals(release_date, that.release_date) &&
                 Objects.equals(summary, that.summary) &&
+                Objects.equals(id, that.id) &&
                 Objects.equals(cover_url, that.cover_url) &&
                 Objects.equals(rating, that.rating);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, release_date, summary, rating, cover_url);
+        return Objects.hash(id,name, release_date, summary, rating, cover_url);
     }
 
     @Override
     public String toString() {
         return "ViewGameDto{" +
+                "id='" + id + '\'' +
+
                 "name='" + name + '\'' +
                 ", release_date='" + release_date + '\'' +
                 ", summary='" + summary + '\'' +
                 ", rating=" + rating +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

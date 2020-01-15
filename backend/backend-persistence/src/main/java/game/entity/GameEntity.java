@@ -19,6 +19,10 @@ import java.util.Objects;
 public class GameEntity extends BaseEntity<Long> {
     public static final String GET_ALL_GAMES = "GameEntity.getAllGames";
 
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -61,7 +65,8 @@ public class GameEntity extends BaseEntity<Long> {
         this.cover_url = cover_url;
     }
 
-    public GameEntity(String name, String release_date, String summary, Float rating, String cover_url) {
+    public GameEntity(Long id,String name, String release_date, String summary, Float rating, String cover_url) {
+        this.id = id;
         this.name = name;
         this.release_date = release_date;
         this.summary = summary;
@@ -92,6 +97,7 @@ public class GameEntity extends BaseEntity<Long> {
         GameEntity that = (GameEntity) o;
         return Objects.equals(name, that.name) &&
                 Objects.equals(release_date, that.release_date) &&
+                Objects.equals(id, that.id) &&
                 Objects.equals(summary, that.summary) &&
                 Objects.equals(cover_url, that.cover_url) &&
                 Objects.equals(rating, that.rating);
@@ -99,16 +105,25 @@ public class GameEntity extends BaseEntity<Long> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, release_date, summary, rating, cover_url);
+        return Objects.hash(id,name, release_date, summary, rating, cover_url);
     }
 
     @Override
     public String toString() {
         return "GameEntity{" +
+                "id='" + id + '\'' +
                 "name='" + name + '\'' +
                 ", release_date='" + release_date + '\'' +
                 ", summary='" + summary + '\'' +
                 ", rating=" + rating +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
