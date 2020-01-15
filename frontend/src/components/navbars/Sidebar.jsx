@@ -20,16 +20,9 @@ class Sidebar extends Component {
         this.setState({
           genresList: res
         })
-        console.log(res)
       })
       .catch(err => console.log(err))
 
-    $('.sidebar-row').click(function () {
-      if ($(this).hasClass('row-active'))
-        $(this).removeClass('row-active');
-      else
-        $(this).addClass('row-active');
-    });
   }
 
   getGenres() {
@@ -47,9 +40,17 @@ class Sidebar extends Component {
     //const filters = this.state.genresList;
     let sidebar = [];
 
-    for (let i = 0; i < this.state.genresList.length; i++) {
-      sidebar.push(<li key={i} class="sidebar-row">{this.state.genresList[i].name}</li>)
+    for (let i = 1; i < this.state.genresList.length; i++) {
+      sidebar.push(<li className='sidebar-row'>{this.state.genresList[i].name}</li>)
     }
+    $('.sidebar-row').on('click',function () {
+      console.log('clicked');
+      //$(this).toggleClass('row-active');
+      if ($(this).hasClass('row-active'))
+        $(this).removeClass('row-active');
+      else
+        $(this).addClass('row-active');
+    });
     return sidebar
   }
   render() {
