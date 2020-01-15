@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import HomePage from './components/HomePage';
 import GamePage from './components/GamePage';
+import WishlistPage from './components/WishlistPage';
+
 import './styles/styles.scss';
 import './styles/fonts/coolvetica-rg.ttf';
 import { firebase } from './firebase/firebase';
@@ -14,8 +16,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const routing = (
     <Router>
         <div>
-            <Route exact path="/" component={HomePage}/>
-            <Route path="/game-page" component={GamePage}/>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/game-page" component={GamePage} />
+            <Route path="/wishlist" component={WishlistPage} />
+
         </div>
     </Router>
 )
