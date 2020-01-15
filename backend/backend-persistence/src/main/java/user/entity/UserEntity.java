@@ -13,13 +13,19 @@ import java.util.Objects;
 @Table(name = "users")
 @NamedQueries(
         {
-                @NamedQuery(name = UserEntity.GET_ALL_USERS, query = "Select user from UserEntity user")
+                @NamedQuery(name = UserEntity.GET_ALL_USERS, query = "Select user from UserEntity user"),
+                @NamedQuery(name = UserEntity.GET_USER_BY_EMAIL, query = "Select user from UserEntity user where user.email = :email")
         }
 )
 public class UserEntity extends BaseEntity<Long> {
 
     //Query names
     public static final String GET_ALL_USERS = "UserEntity.getAllUsers";
+    public static final String GET_USER_BY_EMAIL = "UserEntity.getUserByEmail";
+
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
+    private Long id;
 
     @Column(name = "username", nullable = false)
     private String username;
@@ -34,6 +40,13 @@ public class UserEntity extends BaseEntity<Long> {
     }
 
     public UserEntity(String username, String email, String uid) {
+        this.username = username;
+        this.email = email;
+        this.uid = uid;
+    }
+
+    public UserEntity(Long id,String username, String email, String uid) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.uid = uid;
@@ -81,9 +94,18 @@ public class UserEntity extends BaseEntity<Long> {
     @Override
     public String toString() {
         return "UserEntity{" +
+                "id='" + id + '\'' +
                 "username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", uid='" + uid + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

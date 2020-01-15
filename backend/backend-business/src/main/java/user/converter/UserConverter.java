@@ -19,6 +19,7 @@ public class UserConverter {
      */
     public UserDto convertUserEntityToUserDto(UserEntity userEntity){
         return new UserDto(
+                userEntity.getId(),
                 userEntity.getUsername(),
                 userEntity.getEmail(),
                 userEntity.getUid()

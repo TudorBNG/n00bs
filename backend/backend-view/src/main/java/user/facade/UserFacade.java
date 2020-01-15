@@ -25,4 +25,8 @@ public class UserFacade {
         this.userController.createUser(userDto);
     }
 
+    public UserDto getUserByEmail(String email){
+        return this.userController.getUserByEmail(email);
+    }
+
 }

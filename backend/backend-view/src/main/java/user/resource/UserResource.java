@@ -1,5 +1,6 @@
 package user.resource;
 
+import user.converter.dto.EmailDto;
 import user.converter.dto.UserDto;
 import user.facade.UserFacade;
 
@@ -27,6 +28,19 @@ public class UserResource {
         return Response
                 .ok()
                 .entity(this.userFacade.getAllUsers())
+                .build();
+    }
+
+    @POST
+    @Path("/getUserByEmail")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response getUserByEmail(EmailDto email){
+//        this.userFacade
+//                .getUserByEmail(email.getEmail());
+        return Response
+                .ok()
+                .entity(this.userFacade.getUserByEmail(email.getEmail()))
                 .build();
     }
 

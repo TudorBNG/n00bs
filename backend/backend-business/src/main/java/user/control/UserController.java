@@ -42,4 +42,8 @@ public class UserController {
         this.userDao.persistUser(this.userConverter.convertUserDtoToUserEntity(userDto));
     }
 
+    public UserDto getUserByEmail(String email){
+        return this.userConverter.convertUserEntityToUserDto(this.userDao.getUserByEmail(email));
+    }
+
 }

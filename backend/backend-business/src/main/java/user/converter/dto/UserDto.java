@@ -7,6 +7,7 @@ import java.util.Objects;
  */
 
 public class UserDto {
+    private Long id;
     private String username;
     private String email;
     private String uid;
@@ -16,6 +17,13 @@ public class UserDto {
 
 
     public UserDto(String username, String email, String uid) {
+        this.username = username;
+        this.email = email;
+        this.uid = uid;
+    }
+
+    public UserDto(Long id,String username, String email, String uid) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.uid = uid;
@@ -67,5 +75,13 @@ public class UserDto {
                 ", email='" + email + '\'' +
                 ", uid='" + uid + '\'' +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

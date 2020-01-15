@@ -35,4 +35,11 @@ public class UserDao {
         this.entityManager.persist(userEntity);
     }
 
+    public UserEntity getUserByEmail(String email){
+        return this.entityManager
+                .createNamedQuery(UserEntity.GET_USER_BY_EMAIL, UserEntity.class)
+                .setParameter("email",email)
+                .getSingleResult();
+    }
+
 }
