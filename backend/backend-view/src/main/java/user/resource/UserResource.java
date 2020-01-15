@@ -2,6 +2,7 @@ package user.resource;
 
 import user.converter.dto.EmailDto;
 import user.converter.dto.UserDto;
+import user.converter.dto.WishlistDto;
 import user.facade.UserFacade;
 
 import javax.ejb.EJB;
@@ -50,6 +51,17 @@ public class UserResource {
     public Response createUser(UserDto userDto){
         this.userFacade
                 .createUser(userDto);
+        return Response
+                .ok()
+                .build();
+    }
+
+    @POST
+    @Path("/wishlist/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addToWishlist(WishlistDto wishlistDto){
+        this.userFacade
+                .addToWishlist(wishlistDto);
         return Response
                 .ok()
                 .build();

@@ -1,6 +1,7 @@
 package user.dao;
 
 import user.entity.UserEntity;
+import user.entity.WishlistEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -40,6 +41,10 @@ public class UserDao {
                 .createNamedQuery(UserEntity.GET_USER_BY_EMAIL, UserEntity.class)
                 .setParameter("email",email)
                 .getSingleResult();
+    }
+
+    public void persistWishlist(WishlistEntity wishlistEntity){
+        this.entityManager.persist(wishlistEntity);
     }
 
 }

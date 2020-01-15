@@ -1,7 +1,9 @@
 package user.control;
 
 import user.converter.UserConverter;
+import user.converter.WishlistConverter;
 import user.converter.dto.UserDto;
+import user.converter.dto.WishlistDto;
 import user.dao.UserDao;
 
 import javax.ejb.EJB;
@@ -22,6 +24,8 @@ public class UserController {
     @EJB
     private UserConverter userConverter;
 
+    @EJB
+    private WishlistConverter wishlistConverter;
     /**
      * Converts the user entities from dao to dto
      * @return <list>UserDto</list>
@@ -44,6 +48,10 @@ public class UserController {
 
     public UserDto getUserByEmail(String email){
         return this.userConverter.convertUserEntityToUserDto(this.userDao.getUserByEmail(email));
+    }
+
+    public void addToWishlist(WishlistDto wishlistDto){
+        this.userDao.persistWishlist(this.wishlistConverter.convertWishlistDtoToWishlistEntity((wishlistDto)));
     }
 
 }
