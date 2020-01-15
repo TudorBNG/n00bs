@@ -46,9 +46,10 @@ export default class HomePage extends Component {
   handlePrevPage = () => {
     console.log("handlePrev")
     let prevPage = this.state.currentPage - 1
-    this.setState({
-      currentPage: prevPage
-    });
+    if (prevPage != 0)
+      this.setState({
+        currentPage: prevPage
+      });
   }
 
   getGames() {
