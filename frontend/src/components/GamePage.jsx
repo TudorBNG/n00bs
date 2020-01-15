@@ -5,6 +5,7 @@ import StarRatings from 'react-star-ratings';
 import '../styles/components/GamePage.scss';
 import { user } from "./User";
 import IUser from '../models/User.ts';
+import { Service } from '../service/Service';
 
 
 //import { Container } from '@material-ui/core';
@@ -16,20 +17,24 @@ class GamePage extends Component {
         //this.addToWishlist = this.addToWishlist.bind(this)
     }
     state = {
-        email: null
+        email: null,
+        game: this.props.location.state.game
     };
 
     onStorage = () => {
         console.log("onStorage")
         this.setState({
             email: localStorage.getItem('email')
+
+
         })
         // Receive changes in the localStorage
     }
 
     componentDidMount() {
         this.setState({
-            email: localStorage.getItem('email')
+            email: localStorage.getItem('email'),
+            game: this.props.location.state.game
         })
         console.log(this.state.email)
 
@@ -50,7 +55,18 @@ class GamePage extends Component {
         console.log("addToWishlist")
         let mail = this.state.email
         console.log(mail)
-
+        Service.getUserByEmail(mail)
+            .then((usr) => {
+                console.log(usr)
+                return usr.id
+            }
+            ).then((id_usr) => {
+                console.log(id_usr)
+                Service.addToWishlist(id_usr, this.state.game.id)
+                    .then(() => console.log("yes"))
+                    .catch((err) => console.log(err))
+            })
+            .catch((err) => console.log(err))
     }
 
     render() {
