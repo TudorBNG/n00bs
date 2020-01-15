@@ -47,3 +47,19 @@ border-radius: 18px;
 .game-page-title{
     font-size: 3rem;
 }
+
+
+.addWishlist-img-style {
+    //display: flex;
+    //width: calc(10px + 20vw);
+    max-width: 4vw;
+    cursor: pointer;
+    padding-left: 1vw;
+}
+
+.addWishlist-img-style:hover{
+    transform: scale(0.8, 0.8);
+    transition-duration: 0.5s;
+    transition-delay: 15ms;
+    color: $white;
+}

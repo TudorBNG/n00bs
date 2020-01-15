@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HeaderNavbar from './navbars/HeaderNavbar';
-import {Image, Col, Row, Container} from 'react-bootstrap';
+import { Image, Col, Row, Container } from 'react-bootstrap';
 import StarRatings from 'react-star-ratings';
 import '../styles/components/GamePage.scss'
 //import { Container } from '@material-ui/core';
@@ -8,9 +8,9 @@ import '../styles/components/GamePage.scss'
 class GamePage extends Component {
 
 
-componentDidMount() {
-    
-}
+    componentDidMount() {
+
+    }
 
     render() {
         const game = this.props.location.state.game;
@@ -23,26 +23,30 @@ componentDidMount() {
                     <Container>
                         <Row className="Game-div justify-content-center" noGutters>
                             <Col md={4}>
-                            <Image className="Game-image" src={game.cover_url} alt="Game Image"></Image>
+                                <Image className="Game-image" src={game.cover_url} alt="Game Image"></Image>
                             </Col>
                             <Col md={8} className="game-page-content">
-                                <h1 className="game-page-title">{game.name}</h1>
+                                <h1 className="game-page-title">{game.name}
+                                    <a href={console.log("addToWishlist")} title="add to wishlist">
+                                        <Image className='addWishlist-img-style' alt='addToWishlist' src={require('../images/stars.png')}></Image>
+                                    </a>
+                                </h1>
                                 <h6>{game.release_date}</h6>
                                 <StarRatings
-                                rating={4.4}
-                                starRatedColor="#F86210"
-                                changeRating={this.changeRating}
-                                numberOfStars={5}
-                                name='rating'
-                                starDimension="15px"
-                                starSpacing="2px"
+                                    rating={4.4}
+                                    starRatedColor="#F86210"
+                                    changeRating={this.changeRating}
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension="15px"
+                                    starSpacing="2px"
                                 />
-                                <br/>
+                                <br />
                                 <span>Genre: </span>
-                                <br/>
+                                <br />
                                 <span>Platforms: </span>
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
                                 <p>{game.summary}</p>
                             </Col>
                         </Row>
