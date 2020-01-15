@@ -9,7 +9,9 @@ class GamePage extends Component {
 
 
     componentDidMount() {
-
+        ////////////////////////////////
+        /// TODO
+        /// game id sa fie in fe pentru fetch uri de add to wishlist
     }
 
     render() {
