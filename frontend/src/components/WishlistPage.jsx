@@ -1,45 +1,100 @@
 import React, { Component } from 'react';
 import HeaderNavbar from './navbars/HeaderNavbar';
+import '../styles/components/Wishlist.scss';
+import GameCard from './GameCard';
+import IGame from '../models/Game.ts';
 import { Image, Col, Row, Container } from 'react-bootstrap';
-import StarRatings from 'react-star-ratings';
-import '../styles/components/GamePage.scss'
-//import { Container } from '@material-ui/core';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Pagination from 'react-bootstrap/Pagination';
 
 class WishlistPage extends Component {
 
-
-    componentDidMount() {
-        ////////////////////////////////
-        /// TODO
-        /// game id sa fie in fe pentru fetch uri de add to wishlist
+    constructor(props) {
+        super(props);
+        this.getGames = this.getGames.bind(this);
     }
 
+    state = {
+        gamesList: [IGame],
+        currentPage: 1,
+        gamesPerPage: 5
+    };
+
+    componentDidMount() {
+        console.log("compodidmount");
+        this.getGames()
+            .then((res) => {
+                this.setState({
+                    gamesList: res
+                })
+            })
+            .catch(err => console.log(err))
+
+    }
+
+    handleNextPage = () => {
+        console.log("handleNext")
+        let nextPage = this.state.currentPage + 1
+        this.setState({
+            currentPage: nextPage
+        });
+    }
+
+    handlePrevPage = () => {
+        console.log("handlePrev")
+        let prevPage = this.state.currentPage - 1
+        if (prevPage != 0)
+            this.setState({
+                currentPage: prevPage
+            });
+    }
+
+    getGames() {
+        return new Promise((resolve, reject) => {
+            fetch('http://localhost:8080/backend/noobs-api/game/all')
+                .then(res => res.json())
+                .then((data) => {
+                    resolve(data);
+                })
+                .catch(err => reject(err));
+        })
+    }
+
+
+
     render() {
-        const game = [];
+        let i = 0;
+        const indexOfLastGame = this.state.currentPage * this.state.gamesPerPage;
+        const indexOfFirstGame = indexOfLastGame - this.state.gamesPerPage;
+        const currentGames = this.state.gamesList.slice(indexOfFirstGame, indexOfLastGame);
+
         return (
             <div className="Full-view">
                 <Container>
                     <Row noGutters>
                         <HeaderNavbar />
                     </Row>
-                    <Container>
-                        <Row className="Game-div justify-content-center" noGutters>
-                            {/* <Col md={4}>
-                                <Image className="Game-image" src={game.cover_url} alt="Game Image"></Image>
-                            </Col> */}
-                            <Col md={8} className="game-page-content">
+                    <Container className="Homepage-body">
+                        <Pagination className="Cards-container">
+                            <Container >
+                                {
+                                    this.state.gamesList &&
+                                    currentGames.map((game, index) => {
+                                        return <Pagination.Item key={index} className="gamecard-container"><div ><Link to={{ pathname: '/game-page', state: { game: game } }} className="gamecard-style" /*onClick={this.onCardClick}*/><GameCard game={game} /></Link></div></Pagination.Item>
+                                            ;
+                                    })
+                                    // this.state.gamesList.map(game => {
+                                    //   return <Pagination.Item><div className="gamecard-container"><Link to={{ pathname: '/game-page', state: { game: game } }} className="gamecard-style" /*onClick={this.onCardClick}*/><GameCard game={game} /></Link></div></Pagination.Item>
+                                    // })
+                                }
+                                <span className="arrows-container">
+                                    <Pagination.Prev id="pgn-arr" className="pagination-arrow" onClick={this.handlePrevPage} />
+                                    <Pagination.Next id="pgn-arr" className="pagination-arrow" onClick={this.handleNextPage} />
+                                </span>
+                            </Container>
 
-                            </Col>
-                        </Row>
-                        <Row className='more-info-div' noGutters>
+                        </Pagination>
 
-                        </Row>
-                        <Row className='review-div' noGutters>
-                            {/* read and write reviews */}
-                        </Row>
-                        <Row className='reccomending-div' noGutters>
-
-                        </Row>
                     </Container>
                 </Container>
             </div>
