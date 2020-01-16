@@ -15,4 +15,13 @@ public class WishlistConverter {
                 wishlistDto.getId_game()
         );
     }
+
+    public WishlistDto convertWishlistEntityToWishlistDto(WishlistEntity wishlistEntity){
+        return new WishlistDto(
+                wishlistEntity.getId_user(),
+                wishlistEntity.getId_game()
+        );
+    }
+
+
 }

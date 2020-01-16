@@ -5,6 +5,7 @@ import user.converter.WishlistConverter;
 import user.converter.dto.UserDto;
 import user.converter.dto.WishlistDto;
 import user.dao.UserDao;
+import user.entity.WishlistEntity;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -37,6 +38,14 @@ public class UserController {
                 .collect(Collectors.toList());
     }
 
+
+    public List<WishlistDto> getAllWishlist(){
+        return this.userDao.getAllWishlist()
+                .stream()
+                .map(this.wishlistConverter::convertWishlistEntityToWishlistDto)
+                .collect(Collectors.toList());
+    }
+
     /**
      * Converts the user dto to entity
      * Calls the persistUser method from dao using the converted entity as param
@@ -52,6 +61,11 @@ public class UserController {
 
     public void addToWishlist(WishlistDto wishlistDto){
         this.userDao.persistWishlist(this.wishlistConverter.convertWishlistDtoToWishlistEntity((wishlistDto)));
+    }
+
+    public boolean isInWishlist(WishlistDto wishlistDto){
+        return this.userDao.isInWishlist(this.wishlistConverter.convertWishlistDtoToWishlistEntity(wishlistDto));
+
     }
 
 }

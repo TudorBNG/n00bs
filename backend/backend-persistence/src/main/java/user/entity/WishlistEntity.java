@@ -13,18 +13,21 @@ import java.util.Objects;
 @Table(name = "wishlist")
 @NamedQueries(
         {
-                //@NamedQuery(name = WishlistEntity.ADD_TO_WISHLIST, query = "INSERT INTO wishlist (id_game, id_user) user from UserEntity user"),
+                @NamedQuery(name = WishlistEntity.GET_ALL_WISHLIST, query = "Select wishlist from WishlistEntity wishlist"),
         }
 )
-public class WishlistEntity extends BaseEntity<Long> {
+public class WishlistEntity {
+        //extends BaseEntity<Long> {
 
     //Query names
-//    public static final String GET_ALL_USERS = "WishlistEntity.getAllUsers";
+    public static final String GET_ALL_WISHLIST = "WishlistEntity.getAllWishlist";
 //    public static final String GET_USER_BY_EMAIL = "UserEntity.getUserByEmail";
 
+    @Id
     @Column(name="id_user", nullable = false)
     private Long id_user;
 
+    @Id
     @Column(name = "id_game", nullable = false)
     private Long id_game;
 

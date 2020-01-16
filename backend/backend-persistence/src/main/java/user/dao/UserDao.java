@@ -47,4 +47,14 @@ public class UserDao {
         this.entityManager.persist(wishlistEntity);
     }
 
+    public boolean isInWishlist(WishlistEntity wishlistEntity){
+        return this.entityManager
+                .contains(wishlistEntity);
+    }
+
+    public List<WishlistEntity> getAllWishlist(){
+        return this.entityManager
+                .createNamedQuery(WishlistEntity.GET_ALL_WISHLIST, WishlistEntity.class)
+                .getResultList();
+    }
 }

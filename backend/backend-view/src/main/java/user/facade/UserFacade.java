@@ -34,4 +34,12 @@ public class UserFacade {
         this.userController.addToWishlist(wishlistDto);
     }
 
+    public List<WishlistDto> getAllWishlist(){
+        return this.userController.getAllWishlist();
+    }
+
+    public boolean isInWishlist(WishlistDto wishlistDto){
+        return this.userController.getAllWishlist().contains(wishlistDto);
+    }
+
 }

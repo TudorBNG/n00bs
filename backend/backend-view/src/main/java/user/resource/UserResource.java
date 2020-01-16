@@ -41,6 +41,11 @@ public class UserResource {
 //                .getUserByEmail(email.getEmail());
         return Response
                 .ok()
+                //.header("Access-Control-Allow-Origin", "http://localhost:3000")
+                //.header("Access-Control-Allow-Credentials", "true")
+                //.header("Access-Control-Allow-Headers","origin, access-control-allow-origin,content-type, accept, authorization")
+                //.header("Access-Control-Allow-Methods",
+                        //"GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .entity(this.userFacade.getUserByEmail(email.getEmail()))
                 .build();
     }
@@ -65,5 +70,22 @@ public class UserResource {
         return Response
                 .ok()
                 .build();
+    }
+
+    @POST
+    @Path("/wishlist/exists")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response isInWishlist(WishlistDto wishlistDto){
+        if(this.userFacade
+                .isInWishlist(wishlistDto)) {
+            return Response
+                    .ok()
+                    .build();
+        }
+        else{
+            return Response
+                    .status(404)
+                    .build();
+        }
     }
 }
