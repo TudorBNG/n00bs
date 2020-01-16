@@ -20,6 +20,40 @@ export class Service {
                     if (respo.ok) {
                         return respo.json()
                     }
+                    else throw respo.status
+                })
+                .then(re => {
+                    resolve(re)
+                }
+                )
+                .catch((error) => {
+                    reject(error)
+
+                })
+        );
+    }
+
+    public static addUser(name: string, email: string, uid: string) {
+        return new Promise((resolve, reject) =>
+            fetch(`${this.baseUrl}/user/persist`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': 'http://localhost:3000'
+
+                    },
+                    body: JSON.stringify({
+                        username: name,
+                        email: email,
+                        uid: uid
+                    })
+                })
+                .then((respo) => {
+                    if (respo.ok) {
+                        return respo
+                    }
                     else throw respo
                 })
                 .then(re => {

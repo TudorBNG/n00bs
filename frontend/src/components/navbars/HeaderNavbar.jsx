@@ -4,7 +4,7 @@ import '../../styles/components/HeaderNavbar.scss';
 import { Image, Col, Row, Container } from 'react-bootstrap';
 import { firebase, googleAuthProvider } from "../../firebase/firebase";
 import { user } from "../User";
-//import { Container } from '@material-ui/core';
+import { Service } from '../../service/Service';
 
 class HeaderNavbar extends Component {
 
@@ -23,48 +23,43 @@ class HeaderNavbar extends Component {
     })
   }
 
-  addUser(userDto) {
+  addUser() {
     /////////////////////////////////////////////////////////////
     //TODO: 
     //backend: verify if user exists -> add to db otherwise
     ///////////////////////////////////////////////////////////
 
-    //localStorage.setItem('user', userDto);
-    user.user = userDto;
+    let eml = localStorage.getItem('email');
+    console.log("header eml: " + eml)
+
+    Service.getUserByEmail(eml)
+      .then((usr) => {
+        console.log("id user: " + usr.id)
+        return usr
+      }
+      ).then((usr) => {
+        //user ul exista deja
+        console.log("2nd call usr: " + usr)
+
+      })
+      .catch((err) => {
+        console.log("eroare cod: " + err)
+        //if (err == 500) {
+        var username = localStorage.getItem('username');
+        var uid = localStorage.getItem('uid');
+        var email = localStorage.getItem('email');
+        //console.log("user local st: " + usr)
+
+        Service.addUser(username, email, uid)
+          .then(() => {
+            console.log("usr added")
+          })
+          .catch((err) => console.log(err))
+        //}
+      }
+      )
 
 
-    // const apiHeaders = {
-    //   'Content-Type': 'application/json',
-    //   //'Accept': 'application/json',
-    //   //'Access-Control-Allow-Headers': 'origin, content-type, accept, authorization,access-control-allow-origin,access-control-allow-headers',
-    //   //'Access-Control-Allow-Origin': '*'
-
-    // };
-    // return new Promise((resolve, reject) =>
-    //   fetch('http://localhost:8080/backend/noobs-api/user/persist',
-
-    //     {
-    //       method: 'POST',
-    //       headers: apiHeaders,
-    //       body: userDto
-    //     })
-    //     .then((respo) => {
-    //       if (respo.ok) {
-    //         console.log(respo)
-    //         return respo.json()
-
-    //       } else {
-    //         throw respo
-    //       }
-    //     })
-    //     .then((e) =>
-    //       resolve(e)
-    //     )
-    //     .catch((error) => {
-    //       console.log(error)
-    //     })
-    //
-    //)
   }
 
   onClickLogin() {
@@ -74,22 +69,27 @@ class HeaderNavbar extends Component {
       var email = user.email;
       var uid = user.uid;
       const userDto = {
-        name: name,
+        username: name,
         email: email,
         uid: uid
       }
       console.log(userDto)
       if (localStorage.getItem('email') == null) {
         localStorage.setItem('email', email);
+        localStorage.setItem('username', name);
+        localStorage.setItem('uid', uid);
       }
 
-      //this.addUser(userDto);
+      this.addUser();
     })
   }
 
   onClickLogout() {
     firebase.auth().signOut()
     localStorage.removeItem('email');
+    localStorage.removeItem('username');
+    localStorage.removeItem('uid');
+
     user.user = null;
   }
 

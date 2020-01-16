@@ -8,6 +8,7 @@ import user.facade.UserFacade;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -37,14 +38,27 @@ public class UserResource {
     @Path("/getUserByEmail")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response getUserByEmail(EmailDto email){
+    public Response getUserByEmail(EmailDto email) {
 //        this.userFacade
 //                .getUserByEmail(email.getEmail());
-        return Response
-                .ok()
-                .entity(this.userFacade.getUserByEmail(email.getEmail()))
-                .build();
+        try {
+            return Response
+                    .ok()
+                    .entity(this.userFacade.getUserByEmail(email.getEmail()))
+                    .build();
+        }
+        catch (Exception e){
+            if(e.getCause() instanceof NoResultException)
+                return Response
+                    .status(404)
+                    .build();
+            else
+                return Response
+                        .status(500)
+                        .build();
+        }
     }
+
 
     @POST
     @Path("/persist")

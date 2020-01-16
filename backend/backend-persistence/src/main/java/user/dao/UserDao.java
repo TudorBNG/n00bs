@@ -5,6 +5,7 @@ import user.entity.WishlistEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -23,9 +24,14 @@ public class UserDao {
      * @return <list>UserEntity</list>
      */
     public List<UserEntity> getAllUsers(){
-        return this.entityManager
-                .createNamedQuery(UserEntity.GET_ALL_USERS, UserEntity.class)
-                .getResultList();
+        try {
+            return this.entityManager
+                    .createNamedQuery(UserEntity.GET_ALL_USERS, UserEntity.class)
+                    .getResultList();
+        }
+        catch(NoResultException e){
+            throw new NoResultException();
+        }
     }
 
     /**
@@ -42,6 +48,12 @@ public class UserDao {
                 .setParameter("email",email)
                 .getSingleResult();
     }
+
+//    public List<String> getAllEmails(){
+//        return this.entityManager
+//                .createNamedQuery(UserEntity.GET_ALL_EMAILS, String.class)
+//                .getResultList();
+//    }
 
     public void persistWishlist(WishlistEntity wishlistEntity){
         this.entityManager.persist(wishlistEntity);

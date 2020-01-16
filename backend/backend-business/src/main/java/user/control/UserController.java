@@ -65,7 +65,9 @@ public class UserController {
 
     public boolean isInWishlist(WishlistDto wishlistDto){
         return this.userDao.isInWishlist(this.wishlistConverter.convertWishlistDtoToWishlistEntity(wishlistDto));
-
     }
 
+//    public List<String> getAllEmails(){
+//        return this.userDao.getAllEmails();
+//    }
 }
