@@ -14,13 +14,16 @@ import java.util.Objects;
 @NamedQueries(
         {
                 @NamedQuery(name = GameEntity.GET_ALL_GAMES, query = "Select game from GameEntity game"),
-                @NamedQuery(name = GameEntity.GET_ALL_GAMES_WISHLIST, query = "Select game from GameEntity game join WishlistEntity w on w.id_game = game.id WHERE w.id_user = :id ")
+                @NamedQuery(name = GameEntity.GET_ALL_GAMES_WISHLIST, query = "Select game from GameEntity game join WishlistEntity w on w.id_game = game.id WHERE w.id_user = :id "),
+                @NamedQuery(name = GameEntity.GET_GAMES_BY_GENRES, query = "Select game from GameEntity game join GamesGenresEntity gg on gg.game_id = game.id WHERE gg.genre_id in :list ")
+
 
         }
 )
 public class GameEntity extends BaseEntity<Long> {
     public static final String GET_ALL_GAMES = "GameEntity.getAllGames";
     public static final String GET_ALL_GAMES_WISHLIST = "GameEntity.getAllGamesWishlist";
+    public static final String GET_GAMES_BY_GENRES = "GameEntity.getGamesByGenres";
 
     @Id
     @Column(name = "id", nullable = false)

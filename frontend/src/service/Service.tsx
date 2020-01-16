@@ -134,6 +134,17 @@ export class Service {
     }
 
 
+    public static getGenres() {
+        return new Promise((resolve, reject) => {
+            fetch('http://localhost:8080/backend/noobs-api/genre/all')
+                .then(res => res.json())
+                .then((data) => {
+                    resolve(data);
+                })
+                .catch(err => reject(err));
+        })
+    }
+
     public static getUserWishlist(id_user: number) {
         return new Promise((resolve, reject) =>
             fetch(`${this.baseUrl}/game/wishlist/all`,
@@ -199,6 +210,37 @@ export class Service {
         );
     }
 
+    public static getGamesByGenres(genreIds: [number]) {
+        return new Promise((resolve, reject) =>
+            fetch(`${this.baseUrl}/game/genres/filter`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body:
+                        JSON.stringify(
+                            {
+                                genreIds: genreIds
+                            })
+                })
+                .then((respo) => {
+                    if (respo.ok) {
+                        return respo.json()
+                    }
+                    else throw respo
+                })
+                .then(re => {
+                    resolve(re)
+                }
+                )
+                .catch((error) => {
+                    reject(error)
+
+                })
+        );
+    }
 
 
 }

@@ -4,6 +4,7 @@ import game.converter.dto.ViewGameDto;
 import game.entity.GameEntity;
 
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  * @author Bungardean Tudor-Ionut
@@ -27,4 +28,6 @@ public class GameConverter {
                 gameEntity.getCover_url()
         );
     }
+    //public List<Long>
+
 }

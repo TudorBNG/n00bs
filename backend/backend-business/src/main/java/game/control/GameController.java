@@ -3,6 +3,7 @@ package game.control;
 import game.converter.GameConverter;
 import game.converter.dto.ViewGameDto;
 import game.dao.GameDao;
+import genre.converter.dto.GenreIdsListDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -39,4 +40,12 @@ public class GameController {
                 .map(this.gameConverter::convertGameEntityToViewGameDto)
                 .collect(Collectors.toList());
     }
+
+    public List<ViewGameDto> getGamesByGenres(GenreIdsListDto genreIdsListDto){
+        return this.gameDao.getGamesByGenres(genreIdsListDto.getGenreIds())
+                .stream()
+                .map(this.gameConverter::convertGameEntityToViewGameDto)
+                .collect(Collectors.toList());
+    }
+
 }

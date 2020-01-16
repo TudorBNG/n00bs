@@ -33,4 +33,11 @@ public class GameDao {
                 .setParameter("id",id)
                 .getResultList();
     }
+
+    public List<GameEntity> getGamesByGenres(List<Long> genreIdsListDto){
+        return this.entityManager
+                .createNamedQuery(GameEntity.GET_GAMES_BY_GENRES, GameEntity.class)
+                .setParameter("list",genreIdsListDto)
+                .getResultList();
+    }
 }
