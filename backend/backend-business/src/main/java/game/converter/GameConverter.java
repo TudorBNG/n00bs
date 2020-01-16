@@ -1,7 +1,10 @@
 package game.converter;
 
+import com.sun.org.apache.regexp.internal.RE;
+import game.converter.dto.ReviewDto;
 import game.converter.dto.ViewGameDto;
 import game.entity.GameEntity;
+import game.entity.ReviewEntity;
 
 import javax.ejb.Stateless;
 import java.util.List;
@@ -26,6 +29,15 @@ public class GameConverter {
                 gameEntity.getSummary(),
                 gameEntity.getRating(),
                 gameEntity.getCover_url()
+        );
+    }
+
+    public ReviewEntity convertReviewDtoToReviewEntity(ReviewDto reviewDto){
+        return new ReviewEntity(
+                reviewDto.getId_user(),
+                reviewDto.getId_game(),
+                reviewDto.getReview(),
+                reviewDto.getRating()
         );
     }
     //public List<Long>

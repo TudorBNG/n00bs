@@ -1,6 +1,7 @@
 package game.facade;
 
 import game.control.GameController;
+import game.converter.dto.ReviewDto;
 import game.converter.dto.ViewGameDto;
 import genre.converter.dto.GenreIdsListDto;
 import user.converter.dto.UserIdDto;
@@ -29,6 +30,10 @@ public class GameFacade {
 
     public List<ViewGameDto> getGamesByGenres(GenreIdsListDto genreIdsListDto){
         return this.gameController.getGamesByGenres(genreIdsListDto);
+    }
+
+    public void addReview(ReviewDto reviewDto){
+        this.gameController.addReview(reviewDto);
     }
 
 }

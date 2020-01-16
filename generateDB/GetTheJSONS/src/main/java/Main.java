@@ -131,7 +131,7 @@ public class Main {
 
             //Introduceti user-ul si parola voastra pentru db!!
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/n00bs", "root", "your_password");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/n00bs", "root", "");
 
             //Insert game
             String query = "insert IGNORE into games (id, name, rating, summary, release_date, cover_url) values (?, ?, ?, ?, ?, ?)";

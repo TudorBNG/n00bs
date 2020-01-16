@@ -1,6 +1,7 @@
 package game.dao;
 
 import game.entity.GameEntity;
+import game.entity.ReviewEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -39,5 +40,9 @@ public class GameDao {
                 .createNamedQuery(GameEntity.GET_GAMES_BY_GENRES, GameEntity.class)
                 .setParameter("list",genreIdsListDto)
                 .getResultList();
+    }
+
+    public void persistReview(ReviewEntity reviewEntity){
+        this.entityManager.persist(reviewEntity);
     }
 }

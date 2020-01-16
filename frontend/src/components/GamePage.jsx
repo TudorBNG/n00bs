@@ -36,8 +36,8 @@ class GamePage extends Component {
     event.preventDefault();
 
     Service.addRatingAndReview(
-      this.state.user,
-      this.state.game,
+      this.state.user.id,
+      this.state.game.id,
       this.state.rating,
       this.state.review
     )
@@ -69,6 +69,9 @@ class GamePage extends Component {
   getUsrAndState = email => {
     Service.getUserByEmail(email)
       .then(usr => {
+        this.setState({
+          user: usr
+        })
         return usr.id;
       })
       .then(id_usr => {

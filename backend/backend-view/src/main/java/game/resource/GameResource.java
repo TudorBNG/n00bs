@@ -1,5 +1,6 @@
 package game.resource;
 
+import game.converter.dto.ReviewDto;
 import game.facade.GameFacade;
 import genre.converter.dto.GenreDto;
 import genre.converter.dto.GenreIdsListDto;
@@ -52,6 +53,17 @@ public class GameResource {
         return Response
                 .status(Response.Status.OK)
                 .entity(this.gameFacade.getGamesByGenres(genreIdsListDto))
+                .build();
+    }
+
+    @POST
+    @Path("/review/add")
+    @Produces(MediaType.APPLICATION_JSON)
+    //@Consumes(MediaType.APPLICATION_JSON)
+    public Response addReview(ReviewDto reviewDto){
+        this.gameFacade.addReview(reviewDto);
+        return Response
+                .ok()
                 .build();
     }
 }
