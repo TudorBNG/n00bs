@@ -93,35 +93,30 @@ class GamePage extends Component {
         Service.addToWishlist(id_usr, this.state.game.id)
           .then()
           .catch(err => console.log(err));
-                        this.setState({
-                            isInWishlist: true
-                        })
-                    }
-                    )
-                    .catch((err) => console.log(err))
-            })
-            .catch((err) => console.log(err))
-    }
+        this.setState({
+          isInWishlist: true
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
-    removeFromWishlist = () => {
-        console.log("removeFromWishlist")
-        let mail = this.state.email
-        console.log(mail)
-        Service.getUserByEmail(mail)
-            .then((usr) => {
-                console.log(usr)
-                return usr.id
-            }
-            ).then((id_usr) => {
-                console.log(id_usr)
-                Service.removeFromWishlist(id_usr, this.state.game.id)
-                    .then(() => {
-                        console.log("yes")
-                        this.setState({
-                            isInWishlist: false
-                        })
-                    }
-                    )
+  removeFromWishlist = () => {
+    console.log("removeFromWishlist");
+    let mail = this.state.email;
+    console.log(mail);
+    Service.getUserByEmail(mail)
+      .then(usr => {
+        console.log(usr);
+        return usr.id;
+      })
+      .then(id_usr => {
+        console.log(id_usr);
+        Service.removeFromWishlist(id_usr, this.state.game.id).then(() => {
+          console.log("yes");
+          this.setState({
+            isInWishlist: false
+          });
+        });
       })
       .catch(err => console.log(err));
   };
@@ -147,7 +142,18 @@ class GamePage extends Component {
                 <h1 className="game-page-title">
                   {game.name}
                   {this.state.email && (
-                                        <a onClick={this.state.isInWishlist ? this.removeFromWishlist : this.addToWishlist} title={this.state.isInWishlist ? "remove from wishlist" : "add to wishlist"}>
+                    <a
+                      onClick={
+                        this.state.isInWishlist
+                          ? this.removeFromWishlist
+                          : this.addToWishlist
+                      }
+                      title={
+                        this.state.isInWishlist
+                          ? "remove from wishlist"
+                          : "add to wishlist"
+                      }
+                    >
                       <Image
                         className={
                           this.state.isInWishlist
