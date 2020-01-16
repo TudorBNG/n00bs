@@ -63,6 +63,10 @@ public class UserController {
         this.userDao.persistWishlist(this.wishlistConverter.convertWishlistDtoToWishlistEntity((wishlistDto)));
     }
 
+    public void removeFromWishlist(WishlistDto wishlistDto){
+        this.userDao.removeFromWishlist(this.wishlistConverter.convertWishlistDtoToWishlistEntity((wishlistDto)));
+    }
+
     public boolean isInWishlist(WishlistDto wishlistDto){
         return this.userDao.isInWishlist(this.wishlistConverter.convertWishlistDtoToWishlistEntity(wishlistDto));
     }

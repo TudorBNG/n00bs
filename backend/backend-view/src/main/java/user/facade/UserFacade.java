@@ -34,6 +34,10 @@ public class UserFacade {
         this.userController.addToWishlist(wishlistDto);
     }
 
+    public void removeFromWishlist(WishlistDto wishlistDto){
+        this.userController.removeFromWishlist(wishlistDto);
+    }
+
     public List<WishlistDto> getAllWishlist(){
         return this.userController.getAllWishlist();
     }

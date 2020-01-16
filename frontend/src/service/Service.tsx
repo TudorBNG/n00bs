@@ -100,6 +100,40 @@ export class Service {
         );
     }
 
+    public static removeFromWishlist(id_user: number, id_game: number) {
+        return new Promise((resolve, reject) =>
+            fetch(`${this.baseUrl}/user/wishlist/remove`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body:
+                        JSON.stringify(
+                            {
+                                id_user: id_user,
+                                id_game: id_game
+                            })
+                })
+                .then((respo) => {
+                    if (respo.ok) {
+                        return respo.ok
+                    }
+                    else throw respo
+                })
+                .then(re => {
+                    resolve(re)
+                }
+                )
+                .catch((error) => {
+                    reject(error)
+
+                })
+        );
+    }
+
+
     public static getUserWishlist(id_user: number) {
         return new Promise((resolve, reject) =>
             fetch(`${this.baseUrl}/game/wishlist/all`,

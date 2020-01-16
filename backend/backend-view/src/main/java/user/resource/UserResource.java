@@ -71,23 +71,23 @@ public class UserResource {
                 .build();
     }
 
-//    @GET
-//    @Path("/wishlist/all")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public Response getAllUserWishlist(UserIdDto userDto){
-//        return Response
-//                .ok()
-//                .entity(this.userFacade.getUserWishlist())
-//                .build();
-//    }
-
     @POST
     @Path("/wishlist/add")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addToWishlist(WishlistDto wishlistDto){
         this.userFacade
                 .addToWishlist(wishlistDto);
+        return Response
+                .ok()
+                .build();
+    }
+
+    @POST
+    @Path("/wishlist/remove")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response removeFromWishlist(WishlistDto wishlistDto){
+        this.userFacade
+                .removeFromWishlist(wishlistDto);
         return Response
                 .ok()
                 .build();

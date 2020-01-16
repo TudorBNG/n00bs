@@ -59,6 +59,11 @@ public class UserDao {
         this.entityManager.persist(wishlistEntity);
     }
 
+    public void removeFromWishlist(WishlistEntity wishlistEntity){
+        WishlistEntity we = this.entityManager.merge(wishlistEntity);
+        this.entityManager.remove(we);
+    }
+
     public boolean isInWishlist(WishlistEntity wishlistEntity){
         return this.entityManager
                 .contains(wishlistEntity);
