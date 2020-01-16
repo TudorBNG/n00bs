@@ -68,9 +68,9 @@ export class Service {
 
     public static getUserWishlist(id_user: number) {
         return new Promise((resolve, reject) =>
-            fetch(`${this.baseUrl}/user/wishlist/user`,
+            fetch(`${this.baseUrl}/game/wishlist/all`,
                 {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export class Service {
                     body:
                         JSON.stringify(
                             {
-                                id_user: id_user
+                                id: id_user
                             })
                 })
                 .then((respo) => {
@@ -130,5 +130,7 @@ export class Service {
                 })
         );
     }
+
+
 
 }

@@ -6,12 +6,13 @@ import IGame from '../models/Game.ts';
 import { Image, Col, Row, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
+import { Service } from '../service/Service';
 
 class WishlistPage extends Component {
 
     constructor(props) {
         super(props);
-        this.getGames = this.getGames.bind(this);
+        //this.getGames = this.getGames.bind(this);
     }
 
     state = {
@@ -22,13 +23,26 @@ class WishlistPage extends Component {
 
     componentDidMount() {
         console.log("compodidmount");
-        this.getGames()
-            .then((res) => {
-                this.setState({
-                    gamesList: res
-                })
+        let eml = localStorage.getItem('email')
+
+        Service.getUserByEmail(eml)
+            .then((usr) => {
+                console.log(usr)
+                return usr.id
+            }
+            ).then((id_usr) => {
+                console.log(id_usr)
+                Service.getUserWishlist(id_usr)
+                    .then((res) => {
+                        console.log("yes")
+                        this.setState({
+                            gamesList: res
+                        })
+                    }
+                    )
+                    .catch((err) => console.log(err))
             })
-            .catch(err => console.log(err))
+            .catch((err) => console.log(err))
 
     }
 
@@ -49,16 +63,6 @@ class WishlistPage extends Component {
             });
     }
 
-    getGames() {
-        return new Promise((resolve, reject) => {
-            fetch('http://localhost:8080/backend/noobs-api/game/all')
-                .then(res => res.json())
-                .then((data) => {
-                    resolve(data);
-                })
-                .catch(err => reject(err));
-        })
-    }
 
 
 

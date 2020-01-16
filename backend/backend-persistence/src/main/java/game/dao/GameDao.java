@@ -26,4 +26,11 @@ public class GameDao {
                 .createNamedQuery(GameEntity.GET_ALL_GAMES, GameEntity.class)
                 .getResultList();
     }
+
+    public List<GameEntity> getAllGamesWishlist(Long id){
+        return this.entityManager
+                .createNamedQuery(GameEntity.GET_ALL_GAMES_WISHLIST, GameEntity.class)
+                .setParameter("id",id)
+                .getResultList();
+    }
 }

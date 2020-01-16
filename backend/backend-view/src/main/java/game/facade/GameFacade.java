@@ -2,6 +2,7 @@ package game.facade;
 
 import game.control.GameController;
 import game.converter.dto.ViewGameDto;
+import user.converter.dto.UserIdDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -20,4 +21,9 @@ public class GameFacade {
     public List<ViewGameDto> getAllGames(){
         return this.gameController.getAllGames();
     }
+
+    public List<ViewGameDto> getAllGamesWishlist(UserIdDto userIdDto){
+        return this.gameController.getAllGamesWishlist(userIdDto.getId());
+    }
+
 }

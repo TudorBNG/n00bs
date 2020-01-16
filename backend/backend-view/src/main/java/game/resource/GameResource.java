@@ -1,12 +1,11 @@
 package game.resource;
 
 import game.facade.GameFacade;
+import user.converter.dto.UserIdDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -28,6 +27,17 @@ public class GameResource {
         return Response
                 .status(Response.Status.OK)
                 .entity(this.gameFacade.getAllGames())
+                .build();
+    }
+
+    @POST
+    @Path("/wishlist/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    //@Consumes(MediaType.APPLICATION_JSON)
+    public Response getUserWishlist(UserIdDto userIdDto){
+        return Response
+                .status(Response.Status.OK)
+                .entity(this.gameFacade.getAllGamesWishlist(userIdDto))
                 .build();
     }
 }

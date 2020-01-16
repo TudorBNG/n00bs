@@ -39,29 +39,6 @@ class GamePage extends Component {
         console.log(this.state.email)
 
         this.getUsrAndState(eml)
-        // Service.getUserByEmail(this.state.email)
-        //     .then((usr) => {
-        //         console.log(usr)
-        //         return usr.id
-        //     }
-        //     ).then((id_usr) => {
-        //         console.log(id_usr)
-        //         Service.isInWishlist(id_usr, this.state.game.id)
-        //             .then(() =>
-        //                 //console.log("yes")
-        //                 this.setState({
-        //                     isInWishlist: true
-        //                 })
-        //             )
-        //             .catch((err) => console.log(err))
-        //     })
-        //     .catch((err) => console.log(err))
-        // if (window.addEventListener) {
-        //     window.addEventListener("storage", this.onStorage, false);
-        // } else {
-        //     window.attachEvent("onstorage", this.onStorage);
-        // };
-
     }
 
     getUsrAndState = (eml) => {

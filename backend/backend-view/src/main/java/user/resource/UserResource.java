@@ -2,6 +2,7 @@ package user.resource;
 
 import user.converter.dto.EmailDto;
 import user.converter.dto.UserDto;
+import user.converter.dto.UserIdDto;
 import user.converter.dto.WishlistDto;
 import user.facade.UserFacade;
 
@@ -41,11 +42,6 @@ public class UserResource {
 //                .getUserByEmail(email.getEmail());
         return Response
                 .ok()
-                //.header("Access-Control-Allow-Origin", "http://localhost:3000")
-                //.header("Access-Control-Allow-Credentials", "true")
-                //.header("Access-Control-Allow-Headers","origin, access-control-allow-origin,content-type, accept, authorization")
-                //.header("Access-Control-Allow-Methods",
-                        //"GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .entity(this.userFacade.getUserByEmail(email.getEmail()))
                 .build();
     }
@@ -60,6 +56,17 @@ public class UserResource {
                 .ok()
                 .build();
     }
+
+//    @GET
+//    @Path("/wishlist/all")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public Response getAllUserWishlist(UserIdDto userDto){
+//        return Response
+//                .ok()
+//                .entity(this.userFacade.getUserWishlist())
+//                .build();
+//    }
 
     @POST
     @Path("/wishlist/add")

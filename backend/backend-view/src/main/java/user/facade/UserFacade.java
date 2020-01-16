@@ -42,4 +42,9 @@ public class UserFacade {
         return this.userController.getAllWishlist().contains(wishlistDto);
     }
 
+    //public List<WishlistDto> getUserWishlist(){
+    //    return this.userController.getAllUsers();
+    //}
+
+
 }

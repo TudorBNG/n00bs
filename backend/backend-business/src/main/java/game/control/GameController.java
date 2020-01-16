@@ -32,4 +32,11 @@ public class GameController {
                 .map(this.gameConverter::convertGameEntityToViewGameDto)
                 .collect(Collectors.toList());
     }
+
+    public List<ViewGameDto> getAllGamesWishlist(Long id){
+        return this.gameDao.getAllGamesWishlist(id)
+                .stream()
+                .map(this.gameConverter::convertGameEntityToViewGameDto)
+                .collect(Collectors.toList());
+    }
 }
