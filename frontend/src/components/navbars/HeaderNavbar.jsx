@@ -79,7 +79,7 @@ class HeaderNavbar extends Component {
         uid: uid
       }
       console.log(userDto)
-      if (localStorage == null) {
+      if (localStorage.getItem('email') == null) {
         localStorage.setItem('email', email);
       }
 

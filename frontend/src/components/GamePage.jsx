@@ -3,23 +3,21 @@ import HeaderNavbar from './navbars/HeaderNavbar';
 import { Image, Col, Row, Container } from 'react-bootstrap';
 import StarRatings from 'react-star-ratings';
 import '../styles/components/GamePage.scss';
-import { user } from "./User";
-import IUser from '../models/User.ts';
 import { Service } from '../service/Service';
-
-
-//import { Container } from '@material-ui/core';
 
 class GamePage extends Component {
 
     constructor(props) {
         super(props);
         //this.addToWishlist = this.addToWishlist.bind(this)
+        this.state = {
+            email: '',
+            user: null,
+            game: this.props.location.state.game,
+            isInWishlist: false
+        };
     }
-    state = {
-        email: null,
-        game: this.props.location.state.game
-    };
+
 
     onStorage = () => {
         console.log("onStorage")
@@ -32,23 +30,59 @@ class GamePage extends Component {
     }
 
     componentDidMount() {
+        let eml = localStorage.getItem('email')
+        console.log("eml: " + eml)
         this.setState({
-            email: localStorage.getItem('email'),
+            email: eml,
             game: this.props.location.state.game
         })
         console.log(this.state.email)
 
-        if (window.addEventListener) {
-            window.addEventListener("storage", this.onStorage, false);
-        } else {
-            window.attachEvent("onstorage", this.onStorage);
-        };
+        this.getUsrAndState(eml)
+        // Service.getUserByEmail(this.state.email)
+        //     .then((usr) => {
+        //         console.log(usr)
+        //         return usr.id
+        //     }
+        //     ).then((id_usr) => {
+        //         console.log(id_usr)
+        //         Service.isInWishlist(id_usr, this.state.game.id)
+        //             .then(() =>
+        //                 //console.log("yes")
+        //                 this.setState({
+        //                     isInWishlist: true
+        //                 })
+        //             )
+        //             .catch((err) => console.log(err))
+        //     })
+        //     .catch((err) => console.log(err))
+        // if (window.addEventListener) {
+        //     window.addEventListener("storage", this.onStorage, false);
+        // } else {
+        //     window.attachEvent("onstorage", this.onStorage);
+        // };
 
+    }
 
-
-        ////////////////////////////////
-        /// TODO
-        /// game id sa fie in fe pentru fetch uri de add to wishlist
+    getUsrAndState = (eml) => {
+        Service.getUserByEmail(eml)
+            .then((usr) => {
+                console.log("id user: " + usr.id)
+                return usr.id
+            }
+            ).then((id_usr) => {
+                console.log(id_usr)
+                Service.isInWishlist(id_usr, this.props.location.state.game.id)
+                    .then(() => {
+                        console.log("yes")
+                        this.setState({
+                            isInWishlist: true
+                        })
+                    }
+                    )
+                    .catch((err) => console.log(err))
+            })
+            .catch((err) => console.log(err))
     }
 
     addToWishlist = () => {
@@ -86,7 +120,9 @@ class GamePage extends Component {
                                 <h1 className="game-page-title">{game.name}
                                     {this.state.email &&
                                         <a onClick={this.addToWishlist} title="add to wishlist">
-                                            <Image className='addWishlist-img-style' alt='addToWishlist' src={require('../images/stars.png')}></Image>
+                                            <Image className={this.state.isInWishlist ? 'isInWishlist-img-style' : 'addWishlist-img-style'}
+                                                alt='addToWishlist'
+                                                src={require('../images/stars.png')}></Image>
                                         </a>
                                     }
                                 </h1>

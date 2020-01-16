@@ -57,6 +57,18 @@ border-radius: 18px;
     padding-left: 1vw;
 }
 
+.isInWishlist-img-style {
+    //display: flex;
+    //width: calc(10px + 20vw);
+    max-width: 4vw;
+    cursor: pointer;
+    padding-left: 1vw;
+    color: rgb(59, 56, 56);
+    background: rgba(39,62,84,0.82);
+
+
+}
+
 .addWishlist-img-style:hover{
     transform: scale(0.8, 0.8);
     transition-duration: 0.5s;
