@@ -5,9 +5,8 @@ import StarRatings from "react-star-ratings";
 import "../styles/components/GamePage.scss";
 import { Service } from "../service/Service";
 import ReactRatings from "react-ratings-declarative";
-import IGameReview from '../models/GameReview.ts';
+import IGameReview from "../models/GameReview.ts";
 import { firebase, googleAuthProvider } from "../firebase/firebase";
-
 
 class GamePage extends Component {
   constructor(props) {
@@ -21,7 +20,8 @@ class GamePage extends Component {
       rating: 0,
       review: "",
       gameReviews: [IGameReview],
-      reviewAdded: false
+      reviewAdded: false,
+      link: []
     };
   }
 
@@ -49,21 +49,15 @@ class GamePage extends Component {
     )
       .then(() => {
         let id = this.state.game.id;
+        this.getDetailedGame();
         Service.getGameReviews(id)
-          .then((res) => {
+          .then(res => {
             console.log(res);
-            //return usr.id;
-            // for (var i = 0; i < res.length; i++) {
-            //   var idu = res[i].id_user
-            //   // Service.getUserById(idu).
-            //   // then(()=>{
 
-            //   // })
-            // }
             this.setState({
               gameReviews: res,
               reviewAdded: true
-            })
+            });
           })
           .catch(err => console.log(err));
       })
@@ -82,7 +76,6 @@ class GamePage extends Component {
   };
 
   componentDidMount() {
-
     firebase.auth().onAuthStateChanged(user => {
       this.setState(() => {
         return { googleUser: user };
@@ -97,38 +90,38 @@ class GamePage extends Component {
 
     this.getUsrAndState(email);
     this.getGameReviews();
-    this.getReviewAddedState(email, this.props.location.state.game.id)
-    //this.getDetailedGame(this.props.location.state.game.id)
+    this.getReviewAddedState(email, this.props.location.state.game.id);
+    this.getDetailedGame(this.props.location.state.game.id);
+    this.getGameLink(this.props.location.state.game.id);
   }
 
   getReviewAddedState = (email, id_game) => {
     Service.getUserByEmail(email)
-      .then((res) => {
+      .then(res => {
         Service.getUserReview(id_game, res.id)
-          .then((ress) => {
-            console.log("review: " + ress.length)
+          .then(ress => {
+            console.log("review: " + ress.length);
             if (ress.length != 0) {
               this.setState({
                 reviewAdded: true
-              })
-            }
-            else {
+              });
+            } else {
               this.setState({
                 reviewAdded: false
-              })
+              });
             }
           })
-          .catch((err) => console.log(err))
+          .catch(err => console.log(err));
       })
-      .catch((err) => console.log(err))
-  }
+      .catch(err => console.log(err));
+  };
 
   getUsrAndState = email => {
     Service.getUserByEmail(email)
       .then(usr => {
         this.setState({
           user: usr
-        })
+        });
         return usr.id;
       })
       .then(id_usr => {
@@ -185,11 +178,11 @@ class GamePage extends Component {
     console.log("getGameReviews");
     let id = this.state.game.id;
     Service.getGameReviews(id)
-      .then((res) => {
+      .then(res => {
         console.log(res);
         this.setState({
           gameReviews: res
-        })
+        });
       })
       .catch(err => console.log(err));
   };
@@ -198,11 +191,24 @@ class GamePage extends Component {
     console.log("getDetailedGame");
     let id = this.state.game.id;
     Service.getDetailedGame(id)
-      .then((res) => {
+      .then(res => {
         console.log(res);
         this.setState({
           game: res
-        })
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  getGameLink = id => {
+    console.log("getLink: " + id);
+    //let id = this.state.game.id;
+    Service.getGameLinks(id)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          link: res[0]
+        });
       })
       .catch(err => console.log(err));
   };
@@ -243,15 +249,18 @@ class GamePage extends Component {
                       <Image
                         className={"addWishlist-img-style"}
                         alt="addToWishlist"
-                        src={!this.state.isInWishlist ?
-                          require("../images/stars.png") : require("../images/stars_added.png")}
+                        src={
+                          !this.state.isInWishlist
+                            ? require("../images/stars.png")
+                            : require("../images/stars_added.png")
+                        }
                       ></Image>
                     </a>
                   )}
                 </h1>
                 <h6>{game.release_date}</h6>
                 <StarRatings
-                  rating={this.state.game.rating}
+                  rating={this.state.game.rating && this.state.game.rating}
                   starRatedColor="#F86210"
                   //changeRating={this.changeRating}
                   numberOfStars={5}
@@ -260,17 +269,64 @@ class GamePage extends Component {
                   starSpacing="2px"
                 />
                 <br />
-                <span>Genre: </span>
+                <span>
+                  Genre:{" "}
+                  {this.state.game.genreEntityList &&
+                    this.state.game.genreEntityList.map((x, index) => {
+                      if (index != this.state.game.genreEntityList.length - 1)
+                        return x.name + ", ";
+                      else {
+                        return x.name;
+                      }
+                    })}
+                </span>
                 <br />
-                <span>Platforms: </span>
+                <span>
+                  Platforms:{" "}
+                  {this.state.game.platformEntityList &&
+                    this.state.game.platformEntityList.map((x, index) => {
+                      if (
+                        index !=
+                        this.state.game.platformEntityList.length - 1
+                      )
+                        return x.name + ", ";
+                      else {
+                        return x.name;
+                      }
+                    })}
+                </span>
+                <br />
+                <span>
+                  Companies:{" "}
+                  {this.state.game.companyEntityList &&
+                    this.state.game.companyEntityList.map((x, index) => {
+                      if (index < 2) {
+                        if (
+                          index !=
+                          this.state.game.platformEntityList.length - 1
+                        )
+                          return x.company + ", ";
+                        else {
+                          return x.company;
+                        }
+                      } else if (index === 2) {
+                        return x.company;
+                      }
+                    })}
+                </span>
+                <br />
+                <span>
+                  Buy from: {this.state.link && <a href={this.state.link.link}>{this.state.link.domain_name}</a>}
+                </span>
+
                 <br />
                 <br />
+
                 <p>{game.summary}</p>
               </Col>
             </Row>
-            {
-              this.state.googleUser
-              && (!this.state.reviewAdded ?
+            {this.state.googleUser &&
+              (!this.state.reviewAdded ? (
                 <Row className="review-div centered" noGutters>
                   <label className="game-page-leave-rev">Leave a rating:</label>
                   <form onSubmit={this.handleSubmitRatingAndReview}>
@@ -315,7 +371,7 @@ class GamePage extends Component {
                     {this.state.rating !== 0 && (
                       <div className="game-page-content review">
                         Write a review:
-                  </div>
+                      </div>
                     )}
                     <div className="review">
                       {this.state.rating !== 0 && (
@@ -335,54 +391,60 @@ class GamePage extends Component {
                       )}
                     </div>
                   </form>
-                </Row> : <Row className="review-div-added centered" noGutters> <div className="game-page-content review">Already reviewed!</div></Row>)
-            }
-            {this.state.gameReviews && this.state.gameReviews.map((rev, index) => {
-              return <Row className="more-info-div" noGutters>
-                {
-                  rev.review
-                }
-                <span className="ratings">
-                  <ReactRatings
-                    id="rate"
-                    name="rate"
-                    rating={rev.rating}
-                    widgetRatedColors="orange"
-                    widgetDimensions="25px"
-                    widgetSpacings="5px"
-                    widgetEmptyColors="#5396c2"
-                  >
-                    <ReactRatings.Widget
-                      widgetHoverColor="orange"
-                      svgIconViewBox="0 0 20 20"
-                      svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
-                    />
-                    <ReactRatings.Widget
-                      widgetHoverColor="orange"
-                      svgIconViewBox="0 0 20 20"
-                      svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
-                    />
-                    <ReactRatings.Widget
-                      widgetHoverColor="orange"
-                      svgIconViewBox="0 0 20 20"
-                      svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
-                    />
-                    <ReactRatings.Widget
-                      widgetHoverColor="orange"
-                      svgIconViewBox="0 0 20 20"
-                      svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
-                    />
-                    <ReactRatings.Widget
-                      widgetHoverColor="orange"
-                      svgIconViewBox="0 0 20 20"
-                      svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
-                    />
-                  </ReactRatings>
-                </span>
-
-              </Row>
-                ;
-            })}
+                </Row>
+              ) : (
+                <Row className="review-div-added centered" noGutters>
+                  {" "}
+                  <div className="game-page-content review">
+                    Already reviewed!
+                  </div>
+                </Row>
+              ))}
+            {this.state.gameReviews &&
+              this.state.gameReviews.map((rev, index) => {
+                return (
+                  <Row className="more-info-div" noGutters>
+                    {rev.review}
+                    <span className="ratings">
+                      <ReactRatings
+                        id="rate"
+                        name="rate"
+                        rating={rev.rating}
+                        widgetRatedColors="orange"
+                        widgetDimensions="25px"
+                        widgetSpacings="5px"
+                        widgetEmptyColors="#5396c2"
+                      >
+                        <ReactRatings.Widget
+                          widgetHoverColor="orange"
+                          svgIconViewBox="0 0 20 20"
+                          svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
+                        />
+                        <ReactRatings.Widget
+                          widgetHoverColor="orange"
+                          svgIconViewBox="0 0 20 20"
+                          svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
+                        />
+                        <ReactRatings.Widget
+                          widgetHoverColor="orange"
+                          svgIconViewBox="0 0 20 20"
+                          svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
+                        />
+                        <ReactRatings.Widget
+                          widgetHoverColor="orange"
+                          svgIconViewBox="0 0 20 20"
+                          svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
+                        />
+                        <ReactRatings.Widget
+                          widgetHoverColor="orange"
+                          svgIconViewBox="0 0 20 20"
+                          svgIconPath="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z"
+                        />
+                      </ReactRatings>
+                    </span>
+                  </Row>
+                );
+              })}
 
             {/*
               <Row className="reccomending-div" noGutters></Row>
