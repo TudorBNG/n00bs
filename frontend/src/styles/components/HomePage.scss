@@ -67,7 +67,7 @@ li.pagination-arrow.page-item{
   font-size: 70px;
   font-weight: 900;
   text-align: center;
-  border: transparent;
+  border: transparent;  
 }
 
 
@@ -94,7 +94,7 @@ a, a:visited, a:active {
   .Full-view{
     background-color: $lightGray;
     display: flex;
-    min-height: 100vh;
+    //min-height: 100vh;
     height: 100%;
     //width: 100vw;
     flex-direction: column;

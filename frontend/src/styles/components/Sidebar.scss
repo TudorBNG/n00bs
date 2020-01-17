@@ -3,6 +3,7 @@
 
 .sidebar-style{
     //margin-left: 1vw;
+    position: fixed;
     flex-direction: column;
     display: flex;
     flex:1;
@@ -10,7 +11,7 @@
     border-radius: 15px;
     align-items: center;
     height: auto;
-    width: 19%;
+    //width: 19%;
     overflow-y: scroll;
     float: left;
     scrollbar-width: none;

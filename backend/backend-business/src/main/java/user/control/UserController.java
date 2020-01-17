@@ -59,6 +59,10 @@ public class UserController {
         return this.userConverter.convertUserEntityToUserDto(this.userDao.getUserByEmail(email));
     }
 
+    public UserDto getUserById(Long email){
+        return this.userConverter.convertUserEntityToUserDto(this.userDao.getUserById(email));
+    }
+
     public void addToWishlist(WishlistDto wishlistDto){
         this.userDao.persistWishlist(this.wishlistConverter.convertWishlistDtoToWishlistEntity((wishlistDto)));
     }

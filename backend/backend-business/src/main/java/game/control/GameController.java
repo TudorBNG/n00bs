@@ -1,12 +1,18 @@
 package game.control;
 
 import game.converter.GameConverter;
+import game.converter.dto.CompleteGameDto;
+import game.converter.dto.IdDto;
+import game.converter.dto.ReviewDto;
+import game.converter.dto.UserReviewDto;
 import game.converter.dto.ViewExtendedGameDTO;
 import game.converter.dto.ViewGameDto;
+import game.converter.dto.ViewReviewDto;
 import game.dao.GameDao;
 import game.dto.GameCompanyDTO;
 import game.dto.GameGenresDTO;
 import game.dto.GamePlatformsDTO;
+import genre.converter.dto.GenreIdsListDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -61,4 +67,52 @@ public class GameController {
                 .map(this.gameConverter::convertGameEntityToViewGameDto)
                 .collect(Collectors.toList());
     }
+
+    public List<ViewGameDto> getGamesByGenres(GenreIdsListDto genreIdsListDto){
+        return this.gameDao.getGamesByGenres(genreIdsListDto.getGenreIds())
+                .stream()
+                .map(this.gameConverter::convertGameEntityToViewGameDto)
+                .collect(Collectors.toList());
+    }
+
+    public void addReview(ReviewDto reviewDto){
+            this.gameDao.persistReview(this.gameConverter.convertReviewDtoToReviewEntity(reviewDto));
+    }
+
+    public List<ReviewDto> getAllReviews(){
+        return this.gameDao.getAllReviews()
+        	.stream()
+                .map(this.gameConverter::convertReviewEntityToReviewDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<CompleteGameDto> getCompleteGameData(){
+        return this.gameDao.getAllGames()
+                .stream()
+                .map(this.gameConverter::convertGameEntityToCompleteGameDto)
+                .collect(Collectors.toList());
+    }
+
+    public CompleteGameDto getGameById(IdDto id){
+        return this.gameConverter
+                .convertGameEntityToCompleteGameDto(this.gameDao.getGameById(id.getId()));
+        //Long id = l.get(0).getId_user();
+    }
+
+    public List<ReviewDto> getGameReviews(Long id){
+        return this.gameDao.getGameReviews(id)
+                .stream()
+                .map(this.gameConverter::convertReviewEntityToReviewDto)
+                .collect(Collectors.toList());
+        //Long id = l.get(0).getId_user();
+    }
+
+    public List<ReviewDto> getUserReview(UserReviewDto id){
+        return this.gameDao.getUserReview(id.getId_game(),id.getId_user())
+                .stream()
+                .map(this.gameConverter::convertReviewEntityToReviewDto)
+                .collect(Collectors.toList());
+        //Long id = l.get(0).getId_user();
+    }
+
 }

@@ -1,8 +1,13 @@
 package game.entity;
 
+import company.entity.CompanyEntity;
+import genre.entity.GenreEntity;
+import platform.entity.PlatformEntity;
 import utils.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,13 +19,18 @@ import java.util.Objects;
 @NamedQueries(
         {
                 @NamedQuery(name = GameEntity.GET_ALL_GAMES, query = "Select game from GameEntity game"),
-                @NamedQuery(name = GameEntity.GET_ALL_GAMES_WISHLIST, query = "Select game from GameEntity game join WishlistEntity w on w.id_game = game.id WHERE w.id_user = :id ")
+                @NamedQuery(name = GameEntity.GET_ALL_GAMES_WISHLIST, query = "Select game from GameEntity game join WishlistEntity w on w.id_game = game.id WHERE w.id_user = :id "),
+                @NamedQuery(name = GameEntity.GET_GAMES_BY_GENRES, query = "Select game from GameEntity game join GamesGenresEntity gg on gg.game_id = game.id WHERE gg.genre_id in :list "),
+                @NamedQuery(name = GameEntity.GET_GAME_BY_ID, query = "Select game from GameEntity game where game.id = :" + GameEntity.ID)
 
         }
 )
 public class GameEntity extends BaseEntity<Long> {
     public static final String GET_ALL_GAMES = "GameEntity.getAllGames";
     public static final String GET_ALL_GAMES_WISHLIST = "GameEntity.getAllGamesWishlist";
+    public static final String GET_GAMES_BY_GENRES = "GameEntity.getGamesByGenres";
+    public static final String ID = "id";
+    public static final String GET_GAME_BY_ID = "GameEntity.getGameById";
 
     @Id
     @Column(name = "id", nullable = false)
@@ -39,9 +49,44 @@ public class GameEntity extends BaseEntity<Long> {
     private String cover_url;
 
     @Column(name = "rating", nullable = false)
-    private Float rating;
+    private Double rating;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "games_companies",
+            joinColumns = @JoinColumn(name="id_game", referencedColumnName = "id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name="id_company",referencedColumnName = "id",nullable = false)
+    )
+    private List<CompanyEntity> companyEntityList = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "games_genres",
+            joinColumns = @JoinColumn(name="game_id", referencedColumnName = "id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name="genre_id",referencedColumnName = "id",nullable = false)
+    )
+    private List<GenreEntity> genreEntityList = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "games_platforms",
+            joinColumns = @JoinColumn(name="game_id", referencedColumnName = "id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name="platform_id",referencedColumnName = "id",nullable = false)
+    )
+    private List<PlatformEntity> platformEntityList = new ArrayList<>();
+
+
 
     public GameEntity() {
+    }
+
+    public GameEntity(Long id,String name, String release_date, String summary, Double rating, String cover_url) {
+        this.id = id;
+        this.name = name;
+        this.release_date = release_date;
+        this.summary = summary;
+        this.rating = rating;
+        this.cover_url = cover_url;
     }
 
     public String getRelease_date() {
@@ -68,15 +113,6 @@ public class GameEntity extends BaseEntity<Long> {
         this.cover_url = cover_url;
     }
 
-    public GameEntity(Long id,String name, String release_date, String summary, Float rating, String cover_url) {
-        this.id = id;
-        this.name = name;
-        this.release_date = release_date;
-        this.summary = summary;
-        this.rating = rating;
-        this.cover_url = cover_url;
-    }
-
     public String getName() {
         return name;
     }
@@ -85,12 +121,36 @@ public class GameEntity extends BaseEntity<Long> {
         this.name = name;
     }
 
-    public Float getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Float rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public List<CompanyEntity> getCompanyEntityList() {
+        return companyEntityList;
+    }
+
+    public void setCompanyEntityList(List<CompanyEntity> companyEntityList) {
+        this.companyEntityList = companyEntityList;
+    }
+
+    public List<GenreEntity> getGenreEntityList() {
+        return genreEntityList;
+    }
+
+    public void setGenreEntityList(List<GenreEntity> genreEntityList) {
+        this.genreEntityList = genreEntityList;
+    }
+
+    public List<PlatformEntity> getPlatformEntityList() {
+        return platformEntityList;
+    }
+
+    public void setPlatformEntityList(List<PlatformEntity> platformEntityList) {
+        this.platformEntityList = platformEntityList;
     }
 
     @Override
