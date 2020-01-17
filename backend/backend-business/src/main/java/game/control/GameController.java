@@ -1,12 +1,7 @@
 package game.control;
 
 import game.converter.GameConverter;
-import game.converter.dto.CompleteGameDto;
-import game.converter.dto.IdDto;
-import game.converter.dto.ReviewDto;
-import game.converter.dto.UserReviewDto;
-import game.converter.dto.ViewGameDto;
-import game.converter.dto.ViewReviewDto;
+import game.converter.dto.*;
 import game.dao.GameDao;
 import genre.converter.dto.GenreIdsListDto;
 
@@ -93,4 +88,10 @@ public class GameController {
         //Long id = l.get(0).getId_user();
     }
 
+    public List<ReviewDto> getUserReviews(IdGameDto idGameDto) {
+        return this.gameDao.getUserReviews(idGameDto.getId())
+                .stream()
+                .map(this.gameConverter::convertReviewEntityToReviewDto)
+                .collect(Collectors.toList());
+    }
 }

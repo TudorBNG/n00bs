@@ -54,11 +54,13 @@
     box-shadow: 0 4px $green;
   }
 
+<<<<<<< HEAD
   .nav-div-right{
       align-self: center;
-   }
+=======
   .user-name:hover{
       text-decoration: none;
+>>>>>>> user-page
   }
 
 // .login-button{

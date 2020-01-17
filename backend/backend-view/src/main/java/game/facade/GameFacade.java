@@ -56,4 +56,7 @@ public class GameFacade {
 
     }
 
+    public List<ReviewDto> getUserReviews(IdGameDto idGameDto) {
+        return this.gameController.getUserReviews(idGameDto);
+    }
 }

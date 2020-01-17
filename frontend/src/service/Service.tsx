@@ -364,4 +364,30 @@ export class Service {
         });
     });
   }
+    public static getAllUserReviews(id_user: number) {
+        return new Promise((resolve, reject) => {
+            fetch(`${this.baseUrl}/game/userReviews`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: id_user
+                })
+            })
+                .then(respo => {
+                    if (respo.ok) {
+                        return respo.json();
+                    } else throw respo;
+                })
+                .then(re => {
+                    resolve(re);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
 }

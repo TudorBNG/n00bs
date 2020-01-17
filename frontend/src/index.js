@@ -10,6 +10,7 @@ import { firebase } from './firebase/firebase';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UserPage from './components/UserPage';
 
 
 //ReactDOM.render(<LoadingPage />, document.getElementById('root'));
@@ -19,6 +20,7 @@ const routing = (
             <Route exact path="/" component={HomePage} />
             <Route path="/game-page" component={GamePage} />
             <Route path="/wishlist" component={WishlistPage} />
+            <Route path="/user-page" component={UserPage}/>
 
         </div>
     </Router>
