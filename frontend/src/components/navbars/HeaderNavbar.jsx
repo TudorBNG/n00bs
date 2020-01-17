@@ -23,37 +23,20 @@ class HeaderNavbar extends Component {
   }
 
   addUser() {
-    /////////////////////////////////////////////////////////////
-    //TODO:
-    //backend: verify if user exists -> add to db otherwise
-    ///////////////////////////////////////////////////////////
-
     let eml = localStorage.getItem("email");
-    console.log("header eml: " + eml);
 
     Service.getUserByEmail(eml)
       .then(usr => {
-        console.log("id user: " + usr.id);
         return usr;
       })
-      .then(usr => {
-        //user ul exista deja
-        console.log("2nd call usr: " + usr);
-      })
       .catch(err => {
-        console.log("eroare cod: " + err);
-        //if (err == 500) {
         var username = localStorage.getItem("username");
         var uid = localStorage.getItem("uid");
         var email = localStorage.getItem("email");
-        //console.log("user local st: " + usr)
 
         Service.addUser(username, email, uid)
-          .then(() => {
-            console.log("usr added");
-          })
+          .then()
           .catch(err => console.log(err));
-        //}
       });
   }
 
@@ -64,10 +47,9 @@ class HeaderNavbar extends Component {
       .then(() => {
         var user = firebase.auth().currentUser;
         var url = firebase.auth().currentUser.photoURL.toString();
-        console.log(url)
         var name = user.displayName;
-        localStorage.setItem("user",user);
-        localStorage.setItem("url",url);
+        localStorage.setItem("user", user);
+        localStorage.setItem("url", url);
         var email = user.email;
         var uid = user.uid;
         const userDto = {
@@ -75,12 +57,10 @@ class HeaderNavbar extends Component {
           email: email,
           uid: uid
         };
-        console.log(userDto);
         if (localStorage.getItem("email") == null) {
           localStorage.setItem("email", email);
           localStorage.setItem("username", name);
           localStorage.setItem("uid", uid);
-          
         }
 
         this.addUser();
@@ -111,14 +91,18 @@ class HeaderNavbar extends Component {
             </Tooltip>
           </Col>
 
-          <Col md="7" sm="6" className="justify-content-right" className="nav-div-right">
+          <Col
+            md="7"
+            sm="6"
+            className="justify-content-right"
+            className="nav-div-right"
+          >
             <div className="float-right navbar-icons">
-              {/* toDo: clickable username for info */}
               {this.state.user && (
                 <a href="/user-page">
-                <div className="user-name">
-                  {this.state.user.displayName.toUpperCase()}
-                </div>
+                  <div className="user-name">
+                    {this.state.user.displayName.toUpperCase()}
+                  </div>
                 </a>
               )}
               {!this.state.user && (

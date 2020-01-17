@@ -29,7 +29,6 @@ class GamePage extends Component {
     this.setState({
       email: localStorage.getItem("email")
     });
-    // Receive changes in the localStorage
   };
 
   handleRatingChange = event => {
@@ -52,8 +51,6 @@ class GamePage extends Component {
         this.getDetailedGame();
         Service.getGameReviews(id)
           .then(res => {
-            console.log(res);
-
             this.setState({
               gameReviews: res,
               reviewAdded: true
@@ -100,7 +97,6 @@ class GamePage extends Component {
       .then(res => {
         Service.getUserReview(id_game, res.id)
           .then(ress => {
-            console.log("review: " + ress.length);
             if (ress.length != 0) {
               this.setState({
                 reviewAdded: true
@@ -154,18 +150,13 @@ class GamePage extends Component {
   };
 
   removeFromWishlist = () => {
-    console.log("removeFromWishlist");
     let mail = this.state.email;
-    console.log(mail);
     Service.getUserByEmail(mail)
       .then(usr => {
-        console.log(usr);
         return usr.id;
       })
       .then(id_usr => {
-        console.log(id_usr);
         Service.removeFromWishlist(id_usr, this.state.game.id).then(() => {
-          console.log("yes");
           this.setState({
             isInWishlist: false
           });
@@ -175,11 +166,9 @@ class GamePage extends Component {
   };
 
   getGameReviews = () => {
-    console.log("getGameReviews");
     let id = this.state.game.id;
     Service.getGameReviews(id)
       .then(res => {
-        console.log(res);
         this.setState({
           gameReviews: res
         });
@@ -188,11 +177,9 @@ class GamePage extends Component {
   };
 
   getDetailedGame = () => {
-    console.log("getDetailedGame");
     let id = this.state.game.id;
     Service.getDetailedGame(id)
       .then(res => {
-        console.log(res);
         this.setState({
           game: res
         });
@@ -201,11 +188,8 @@ class GamePage extends Component {
   };
 
   getGameLink = id => {
-    console.log("getLink: " + id);
-    //let id = this.state.game.id;
     Service.getGameLinks(id)
       .then(res => {
-        console.log(res);
         this.setState({
           link: res[0]
         });
@@ -262,7 +246,6 @@ class GamePage extends Component {
                 <StarRatings
                   rating={this.state.game.rating && this.state.game.rating}
                   starRatedColor="#F86210"
-                  //changeRating={this.changeRating}
                   numberOfStars={5}
                   name="rating"
                   starDimension="15px"
@@ -316,7 +299,12 @@ class GamePage extends Component {
                 </span>
                 <br />
                 <span>
-                  Buy from: {this.state.link && <a href={this.state.link.link}>{this.state.link.domain_name}</a>}
+                  Buy from:{" "}
+                  {this.state.link && (
+                    <a href={this.state.link.link}>
+                      {this.state.link.domain_name}
+                    </a>
+                  )}
                 </span>
 
                 <br />
@@ -445,10 +433,6 @@ class GamePage extends Component {
                   </Row>
                 );
               })}
-
-            {/*
-              <Row className="reccomending-div" noGutters></Row>
-            */}
           </Container>
         </Container>
       </div>

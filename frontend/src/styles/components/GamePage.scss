@@ -28,12 +28,11 @@
   display: flex;
 }
 
-.more-info-div.row.no-gutters{
+.more-info-div.row.no-gutters {
   justify-content: space-between;
   padding-left: 30px;
   padding-right: 30px;
 }
-
 
 .review-div {
   background-color: $darkGray;
@@ -44,14 +43,12 @@
   justify-content: left;
 }
 
-
 .review-div-added {
   background-color: $darkGray;
   border-radius: 30px;
   box-shadow: 0 7px #222222;
   margin-top: 3vh;
   padding: 2vh;
-  //justify-content: left;
   text-align: center;
   align-content: center;
   justify-content: center;
@@ -88,16 +85,12 @@
 }
 
 .addWishlist-img-style {
-  //display: flex;
-  //width: calc(10px + 20vw);
   max-width: 4vw;
   cursor: pointer;
   padding-left: 1vw;
 }
 
 .isInWishlist-img-style {
-  //display: flex;
-  //width: calc(10px + 20vw);
   max-width: 4vw;
   cursor: pointer;
   padding-left: 1vw;

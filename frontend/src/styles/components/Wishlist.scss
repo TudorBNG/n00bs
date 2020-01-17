@@ -1,5 +1,5 @@
 @import "../colorPalette";
-@import '../fonts/noobs-font';
+@import "../fonts/noobs-font";
 
 body {
   display: block;
@@ -8,57 +8,44 @@ body {
   height: 100%;
 }
 
-.Homepage-body{
+.Homepage-body {
   margin-top: 1vw;
 }
 
-.Cards-container-wishlist{
+.Cards-container-wishlist {
   width: 100% !important;
   margin: 0;
-  //float: right;
   height: inherit;
 }
 
-// .Cards-container.Cards-container{
-//   width: 100% !important;
-//   margin: 0;
-//   //float: right;
-//   height: inherit;
-//   margin: 0px;
-//   padding: 0px;
-// }
-
 a.page-link {
-  background-color:transparent !important;
+  background-color: transparent !important;
   padding: 0;
   border: 0;
   line-height: 1.5;
   color: $orange;
 }
 
-#pgn-arr{
+#pgn-arr {
   display: inline;
   align-self: flex-start;
-  font-family: 'noobs-font';
+  font-family: "noobs-font";
   font-weight: 900;
 }
 
-#pgn-arr:hover{
+#pgn-arr:hover {
   color: black;
 }
 
-li.pagination-arrow.page-item{
+li.pagination-arrow.page-item {
   width: 100px;
 }
 
-.gamecard-container{
-  //margin-right: -1vw;
-}
-
-
-.arrows-container{
-  $colors: $green, $orange,$red,$grey;
-  $len: length($list: $colors);
+.arrows-container {
+  $colors: $green, $orange, $red, $grey;
+  $len: length(
+    $list: $colors
+  );
   transition: 0.4s;
   border-radius: 40px;
   box-shadow: none;
@@ -67,10 +54,9 @@ li.pagination-arrow.page-item{
   display: flex;
   align-content: center;
   justify-content: space-between;
+}
 
- }
-
-.pagination-arrow{
+.pagination-arrow {
   color: $darkGray;
   height: 50px;
   font-size: 70px;
@@ -79,33 +65,31 @@ li.pagination-arrow.page-item{
   border: transparent;
 }
 
-
-a, a:visited, a:active {
+a,
+a:visited,
+a:active {
   color: inherit;
   outline: transparent;
 }
 
+.Games-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
 
-  .Games-view {
-    flex: 1;
-    //height: 80vh;
-    //min-height: 100%;
-    //margin-left: 3%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: scroll;
-  }
+.Games-view::-webkit-scrollbar {
+  width: 0 !important;
+}
 
-  .Games-view::-webkit-scrollbar { width: 0 !important }
-
-  .Full-view{
-    background-color: $lightGray;
-    display: flex;
-    min-height: 100vh;
-    height: 100%;
-    //width: 100vw;
-    flex-direction: column;
-    align-items: center;
-  }
+.Full-view {
+  background-color: $lightGray;
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}

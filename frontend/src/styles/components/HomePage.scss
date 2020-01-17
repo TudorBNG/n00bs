@@ -1,5 +1,5 @@
 @import "../colorPalette";
-@import '../fonts/noobs-font';
+@import "../fonts/noobs-font";
 
 body {
   display: block;
@@ -8,11 +8,11 @@ body {
   height: 100%;
 }
 
-.Homepage-body{
+.Homepage-body {
   margin-top: 1vw;
 }
 
-.Cards-container{
+.Cards-container {
   width: 80% !important;
   margin: 0;
   float: right;
@@ -20,80 +20,70 @@ body {
 }
 
 a.page-link {
-  background-color:transparent !important;
+  background-color: transparent !important;
   padding: 0;
   border: 0;
   line-height: 1.5;
   color: $orange;
 }
 
-#pgn-arr{
+#pgn-arr {
   display: inline;
   align-self: flex-start;
-  font-family: 'noobs-font';
+  font-family: "noobs-font";
   font-weight: 900;
 }
 
-#pgn-arr:hover{
+#pgn-arr:hover {
   color: black;
 }
 
-li.pagination-arrow.page-item{
+li.pagination-arrow.page-item {
   width: 100px;
 }
 
 .sc-bdVaJa {
   width: 100%;
- }
- 
- /*input*/
- .sc-bwzfXH {
+}
+
+.sc-bwzfXH {
   width: 100%;
   border-radius: 13px;
- }
- 
- .sc-bdVaJa > div:nth-child(1) {
-  /*! border: 1px solid black; */margin-bottom: 2vh;
- }
- 
- .svg-inline--fa {
-  //margin-left: 10px;
-  //margin-right: 10px;
-  //display: none;
- }
-
- .svg-inline--fa.fa-w-16 {
-	width: 1em;
-	position: absolute;
-	right: 10px;
-	top: 1vh;
 }
- 
- .kinYje {
-  width:280px;
-  max-height:200px;
-  border:1px solid #dedede;
-  border-radius:3px;
-  box-sizing:border-box;
-  overflow-y:auto;
-  position:absolute;
-  padding:0;
-  margin:0;
+
+.sc-bdVaJa > div:nth-child(1) {
+  margin-bottom: 2vh;
+}
+
+.svg-inline--fa.fa-w-16 {
+  width: 1em;
+  position: absolute;
+  right: 10px;
+  top: 1vh;
+}
+
+.kinYje {
+  width: 280px;
+  max-height: 200px;
+  border: 1px solid #dedede;
+  border-radius: 3px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  position: absolute;
+  padding: 0;
+  margin: 0;
   display: none;
- }
- 
- .live-search>div>div{
-   border: none !important;
- }
-
-.gamecard-container{
-  //margin-right: -1vw;
 }
 
+.live-search > div > div {
+  border: none !important;
+}
 
-.arrows-container{
-  $colors: $green, $orange,$red,$grey;
-  $len: length($list: $colors);
+.arrows-container {
+  $colors: $green, $orange, $red, $grey;
+  $len: length(
+    $list: $colors
+  );
   transition: 0.4s;
   border-radius: 40px;
   box-shadow: none;
@@ -102,45 +92,42 @@ li.pagination-arrow.page-item{
   display: flex;
   align-content: center;
   justify-content: space-between;
+}
 
- }
-
-.pagination-arrow{
+.pagination-arrow {
   color: $darkGray;
   height: 50px;
   font-size: 70px;
   font-weight: 900;
   text-align: center;
-  border: transparent;  
+  border: transparent;
 }
 
-
-a, a:visited, a:active {
+a,
+a:visited,
+a:active {
   color: inherit;
   outline: transparent;
 }
 
+.Games-view {
+  flex: 1;
+  margin-left: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
 
-  .Games-view {
-    flex: 1;
-    //height: 80vh;
-    //min-height: 100%;
-    margin-left: 3%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: scroll;
-  }
+.Games-view::-webkit-scrollbar {
+  width: 0 !important;
+}
 
-  .Games-view::-webkit-scrollbar { width: 0 !important }
-
-  .Full-view{
-    background-color: $lightGray;
-    display: flex;
-    //min-height: 100vh;
-    height: 100%;
-    //width: 100vw;
-    flex-direction: column;
-    align-items: center;
-  }
+.Full-view {
+  background-color: $lightGray;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
