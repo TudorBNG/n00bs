@@ -1,6 +1,8 @@
 package game.converter;
 
+import game.converter.dto.ViewExtendedGameDTO;
 import game.converter.dto.ViewGameDto;
+import game.dto.GameCompanyDTO;
 import game.entity.GameEntity;
 
 import javax.ejb.Stateless;
