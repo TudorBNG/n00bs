@@ -1,9 +1,8 @@
 package game.converter;
 
-//import com.sun.org.apache.regexp.internal.RE;
-import game.converter.dto.CompleteGameDto;
-import game.converter.dto.ReviewDto;
+import game.converter.dto.ViewExtendedGameDTO;
 import game.converter.dto.ViewGameDto;
+import game.dto.GameCompanyDTO;
 import game.converter.dto.ViewReviewDto;
 import game.entity.GameEntity;
 import game.entity.ReviewEntity;

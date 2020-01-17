@@ -31,9 +31,20 @@ public class GameResource {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllGames(){
+        System.out.println("all");
         return Response
                 .status(Response.Status.OK)
                 .entity(this.gameFacade.getAllGames())
+                .build();
+    }
+
+    @GET
+    @Path("/extended")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllExtendedGames(){
+        return Response
+                .status(Response.Status.OK)
+                .entity(this.gameFacade.getAllExtendedGames())
                 .build();
     }
 

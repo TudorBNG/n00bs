@@ -1,6 +1,8 @@
 package game.facade;
 
 import game.control.GameController;
+import game.converter.dto.ViewExtendedGameDTO;
+import game.converter.dto.ViewGameDto;
 import game.converter.dto.*;
 import game.converter.dto.CompleteGameDto;
 import game.converter.dto.IdDto;
@@ -21,11 +23,15 @@ public class GameFacade {
     @EJB
     private GameController gameController;
 
-    public List<ViewGameDto> getAllGames(){
+    public List<ViewGameDto> getAllGames() {
         return this.gameController.getAllGames();
     }
 
-    public List<ViewGameDto> getAllGamesWishlist(UserIdDto userIdDto){
+    public List<ViewExtendedGameDTO> getAllExtendedGames() {
+        return this.gameController.getAllExtendedGames();
+    }
+
+    public List<ViewGameDto> getAllGamesWishlist(UserIdDto userIdDto) {
         return this.gameController.getAllGamesWishlist(userIdDto.getId());
     }
 
@@ -49,7 +55,7 @@ public class GameFacade {
     public CompleteGameDto getGameById(IdDto id){
         return this.gameController.getGameById(id);
 	}
-	
+
     public List<ReviewDto> getUserReview(UserReviewDto idGameDto){
         //return this.gameController.getGameReviews(idGameDto.getId());
         return this.gameController.getUserReview(idGameDto);
