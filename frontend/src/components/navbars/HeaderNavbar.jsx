@@ -105,7 +105,7 @@ class HeaderNavbar extends Component {
             </Tooltip>
           </Col>
 
-          <Col md="7" sm="6" className="justify-content-right">
+          <Col md="7" sm="6" className="justify-content-right" className="nav-div-right">
             <div className="float-right navbar-icons">
               {/* toDo: clickable username for info */}
               {this.state.user && (

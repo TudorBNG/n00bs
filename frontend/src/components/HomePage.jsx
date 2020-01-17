@@ -48,6 +48,7 @@ export default class HomePage extends Component {
       .catch(err => console.log(err))
     Service.getGenres()
       .then((res) => {
+        res.sort((a,b)=>a.name>b.name)
         this.setState({
           genresList: res
         })
