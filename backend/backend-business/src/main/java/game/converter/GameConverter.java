@@ -1,6 +1,7 @@
 package game.converter;
 
 import com.sun.org.apache.regexp.internal.RE;
+import game.converter.dto.CompleteGameDto;
 import game.converter.dto.ReviewDto;
 import game.converter.dto.ViewGameDto;
 import game.entity.GameEntity;
@@ -38,6 +39,20 @@ public class GameConverter {
                 reviewDto.getId_game(),
                 reviewDto.getReview(),
                 reviewDto.getRating()
+        );
+    }
+
+    public CompleteGameDto convertGameEntityToCompleteGameDto(GameEntity gameEntity){
+        return new CompleteGameDto(
+                gameEntity.getId(),
+                gameEntity.getName(),
+                gameEntity.getRelease_date(),
+                gameEntity.getSummary(),
+                gameEntity.getRating(),
+                gameEntity.getCover_url(),
+                gameEntity.getCompanyEntityList(),
+                gameEntity.getGenreEntityList(),
+                gameEntity.getPlatformEntityList()
         );
     }
     //public List<Long>

@@ -1,6 +1,8 @@
 package game.control;
 
 import game.converter.GameConverter;
+import game.converter.dto.CompleteGameDto;
+import game.converter.dto.IdDto;
 import game.converter.dto.ReviewDto;
 import game.converter.dto.ViewGameDto;
 import game.dao.GameDao;
@@ -51,6 +53,18 @@ public class GameController {
 
     public void addReview(ReviewDto reviewDto){
             this.gameDao.persistReview(this.gameConverter.convertReviewDtoToReviewEntity(reviewDto));
+    }
+
+    public List<CompleteGameDto> getCompleteGameData(){
+        return this.gameDao.getAllGames()
+                .stream()
+                .map(this.gameConverter::convertGameEntityToCompleteGameDto)
+                .collect(Collectors.toList());
+    }
+
+    public CompleteGameDto getGameById(IdDto id){
+        return this.gameConverter
+                .convertGameEntityToCompleteGameDto(this.gameDao.getGameById(id.getId()));
     }
 
 }
