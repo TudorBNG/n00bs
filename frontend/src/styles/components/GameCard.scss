@@ -60,6 +60,7 @@
 .Cards-container{
   overflow-y: scroll;
   scrollbar-width: none;
+  flex-direction: column;
   //max-height: 120vh;
 }
 .Cards-container::-webkit-scrollbar { width: 0 !important }

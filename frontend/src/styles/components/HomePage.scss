@@ -42,6 +42,50 @@ li.pagination-arrow.page-item{
   width: 100px;
 }
 
+.sc-bdVaJa {
+  width: 100%;
+ }
+ 
+ /*input*/
+ .sc-bwzfXH {
+  width: 100%;
+  border-radius: 13px;
+ }
+ 
+ .sc-bdVaJa > div:nth-child(1) {
+  /*! border: 1px solid black; */margin-bottom: 2vh;
+ }
+ 
+ .svg-inline--fa {
+  //margin-left: 10px;
+  //margin-right: 10px;
+  //display: none;
+ }
+
+ .svg-inline--fa.fa-w-16 {
+	width: 1em;
+	position: absolute;
+	right: 10px;
+	top: 1vh;
+}
+ 
+ .kinYje {
+  width:280px;
+  max-height:200px;
+  border:1px solid #dedede;
+  border-radius:3px;
+  box-sizing:border-box;
+  overflow-y:auto;
+  position:absolute;
+  padding:0;
+  margin:0;
+  display: none;
+ }
+ 
+ .live-search>div>div{
+   border: none !important;
+ }
+
 .gamecard-container{
   //margin-right: -1vw;
 }
