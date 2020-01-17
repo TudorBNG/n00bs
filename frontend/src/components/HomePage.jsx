@@ -29,7 +29,8 @@ export default class HomePage extends Component {
     gamesPerPage: 5,
     genresList: [IGenre],
     clickedGenres: [],
-    filtered: false
+    filtered: false,
+    clickedGame: null
   };
 
   componentDidMount() {
@@ -162,6 +163,18 @@ export default class HomePage extends Component {
     })
   }
 
+  getDetailedGame = (id) => {
+    console.log("getDetailedGame");
+
+    Service.getDetailedGame(id)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          clickedGame: res
+        })
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     let i = 0;
