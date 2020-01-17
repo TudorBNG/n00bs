@@ -2,6 +2,7 @@ package user.facade;
 
 import user.control.UserController;
 import user.converter.dto.UserDto;
+import user.converter.dto.UserIdDto;
 import user.converter.dto.WishlistDto;
 
 import javax.ejb.EJB;
@@ -28,6 +29,10 @@ public class UserFacade {
 
     public UserDto getUserByEmail(String email){
         return this.userController.getUserByEmail(email);
+    }
+
+    public UserDto getUserById(UserIdDto email){
+        return this.userController.getUserById(email.getId());
     }
 
     public void addToWishlist(WishlistDto wishlistDto){
