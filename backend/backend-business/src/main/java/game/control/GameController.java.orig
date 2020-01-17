@@ -57,13 +57,7 @@ public class GameController {
             this.gameDao.persistReview(this.gameConverter.convertReviewDtoToReviewEntity(reviewDto));
     }
 
-    public List<ReviewDto> getAllReviews(){
-        return this.gameDao.getAllReviews()
-        	.stream()
-                .map(this.gameConverter::convertReviewEntityToReviewDto)
-                .collect(Collectors.toList());
-    }
-    
+<<<<<<< HEAD
     public List<CompleteGameDto> getCompleteGameData(){
         return this.gameDao.getAllGames()
                 .stream()
@@ -74,6 +68,12 @@ public class GameController {
     public CompleteGameDto getGameById(IdDto id){
         return this.gameConverter
                 .convertGameEntityToCompleteGameDto(this.gameDao.getGameById(id.getId()));
+=======
+    public List<ReviewDto> getAllReviews(){
+        return this.gameDao.getAllReviews()
+                .stream()
+                .map(this.gameConverter::convertReviewEntityToReviewDto)
+                .collect(Collectors.toList());
         //Long id = l.get(0).getId_user();
     }
 
@@ -91,6 +91,7 @@ public class GameController {
                 .map(this.gameConverter::convertReviewEntityToReviewDto)
                 .collect(Collectors.toList());
         //Long id = l.get(0).getId_user();
+>>>>>>> b995f1c01865e519041f02702ac01fc8b02c5ac3
     }
 
 }

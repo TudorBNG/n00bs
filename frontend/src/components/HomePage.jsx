@@ -187,11 +187,16 @@ export default class HomePage extends Component {
             <Pagination className="Cards-container">
               <Container >
                 {
-                  this.state.gamesList &&
-                  currentGames.map((game, index) => {
-                    return <Pagination.Item key={index} className="gamecard-container"><div ><Link to={{ pathname: '/game-page', state: { game: game } }} className="gamecard-style" /*onClick={this.onCardClick}*/><GameCard game={game} /></Link></div></Pagination.Item>
-                      ;
-                  })
+                  this.state.gamesList && (
+
+                    currentGames ?
+                      currentGames.map((game, index) => {
+                        return <Pagination.Item key={index} className="gamecard-container"><div ><Link to={{ pathname: '/game-page', state: { game: game } }} className="gamecard-style" /*onClick={this.onCardClick}*/><GameCard game={game} /></Link></div></Pagination.Item>
+                          ;
+                      })
+                      : this.handlePrevPage
+                  )
+
                   // this.state.gamesList.map(game => {
                   //   return <Pagination.Item><div className="gamecard-container"><Link to={{ pathname: '/game-page', state: { game: game } }} className="gamecard-style" /*onClick={this.onCardClick}*/><GameCard game={game} /></Link></div></Pagination.Item>
                   // })

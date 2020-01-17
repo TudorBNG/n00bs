@@ -42,12 +42,13 @@ public class GameDao {
                 .getResultList();
     }
 
+<<<<<<< HEAD
     public GameEntity getGameById(Long id){
         return this.entityManager
                 .createNamedQuery(GameEntity.GET_GAME_BY_ID, GameEntity.class)
                 .setParameter(GameEntity.ID, id)
                 .getSingleResult();
-    }
+=======
 //    public List<GameEntity> getGameReviews(Long id){
 //        return this.entityManager
 //                .createNamedQuery(Game.GET_GAMES_BY_GENRES, GameEntity.class)
@@ -74,6 +75,7 @@ public class GameDao {
                 .setParameter("id_game",id_game)
                 .setParameter("id_user",id_user)
                 .getResultList();
+>>>>>>> b995f1c01865e519041f02702ac01fc8b02c5ac3
     }
 
     public void persistReview(ReviewEntity reviewEntity){

@@ -7,6 +7,11 @@
   box-shadow: 0 7px #222222;
   margin-top: 3vh;
   padding: 2vh;
+  height: 100%;
+}
+
+.Game-div-container {
+  margin-bottom: 30px;
 }
 
 .more-info-div {
@@ -15,7 +20,20 @@
   box-shadow: 0 7px #222222;
   margin-top: 3vh;
   padding: 2vh;
+  color: white;
+  font-size: 18px;
+  font-family: "noobs-font";
+  font-weight: 100;
+  justify-content: "space-around";
+  display: flex;
 }
+
+.more-info-div.row.no-gutters{
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 
 .review-div {
   background-color: $darkGray;
@@ -24,6 +42,20 @@
   margin-top: 3vh;
   padding: 2vh;
   justify-content: left;
+}
+
+
+.review-div-added {
+  background-color: $darkGray;
+  border-radius: 30px;
+  box-shadow: 0 7px #222222;
+  margin-top: 3vh;
+  padding: 2vh;
+  //justify-content: left;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  padding-left: 85px;
 }
 
 .reccomending-div {
@@ -42,6 +74,13 @@
   font-family: "noobs-font";
   color: white;
   font-weight: 100;
+}
+
+.game-page-leave-rev {
+  font-family: "noobs-font";
+  color: white;
+  font-weight: 100;
+  font-size: 18px;
 }
 
 .game-page-title {

@@ -80,7 +80,7 @@ public class GameEntity extends BaseEntity<Long> {
     public GameEntity() {
     }
 
-    public GameEntity(Long id,String name, String release_date, String summary, Double rating, String cover_url) {
+    public GameEntity(Long id,String name, String release_date, String summary, Float rating, String cover_url) {
         this.id = id;
         this.name = name;
         this.release_date = release_date;
@@ -113,6 +113,18 @@ public class GameEntity extends BaseEntity<Long> {
         this.cover_url = cover_url;
     }
 
+<<<<<<< HEAD
+=======
+    public GameEntity(Long id,String name, String release_date, String summary, Double rating, String cover_url) {
+        this.id = id;
+        this.name = name;
+        this.release_date = release_date;
+        this.summary = summary;
+        this.rating = rating;
+        this.cover_url = cover_url;
+    }
+
+>>>>>>> b995f1c01865e519041f02702ac01fc8b02c5ac3
     public String getName() {
         return name;
     }

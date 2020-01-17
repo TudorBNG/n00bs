@@ -43,6 +43,7 @@ public class GameConverter {
         );
     }
 
+<<<<<<< HEAD
     public CompleteGameDto convertGameEntityToCompleteGameDto(GameEntity gameEntity){
         return new CompleteGameDto(
                 gameEntity.getId(),
@@ -56,7 +57,7 @@ public class GameConverter {
                 gameEntity.getPlatformEntityList()
         );
     }
-
+=======
     public ReviewDto convertReviewEntityToReviewDto(ReviewEntity reviewEntity){
         return new ReviewDto(
                 reviewEntity.getId_user(),
@@ -74,6 +75,7 @@ public class GameConverter {
 //                reviewEntity.getComment());
 //    }
     //publ
+>>>>>>> b995f1c01865e519041f02702ac01fc8b02c5ac3
     //public List<Long>
 
 }

@@ -49,6 +49,13 @@ public class UserDao {
                 .getSingleResult();
     }
 
+    public UserEntity getUserById(Long email){
+        return this.entityManager
+                .createNamedQuery(UserEntity.GET_USER_BY_ID, UserEntity.class)
+                .setParameter("id",email)
+                .getSingleResult();
+    }
+
 //    public List<String> getAllEmails(){
 //        return this.entityManager
 //                .createNamedQuery(UserEntity.GET_ALL_EMAILS, String.class)

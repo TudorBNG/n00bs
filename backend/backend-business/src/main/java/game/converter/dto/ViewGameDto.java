@@ -15,14 +15,14 @@ public class ViewGameDto {
 
     private String summary;
 
-    private Float rating;
+    private Double rating;
 
     private String cover_url;
 
     public ViewGameDto() {
     }
 
-    public ViewGameDto(Long id, String name, String release_date, String summary, Float rating, String cover_url) {
+    public ViewGameDto(Long id, String name, String release_date, String summary, Double rating, String cover_url) {
         this.id = id;
         this.name = name;
         this.release_date = release_date;
@@ -55,11 +55,11 @@ public class ViewGameDto {
         this.summary = summary;
     }
 
-    public Float getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Float rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

@@ -12,12 +12,21 @@ body {
   margin-top: 1vw;
 }
 
-.Cards-container{
+.Cards-container-wishlist{
   width: 100% !important;
   margin: 0;
   //float: right;
   height: inherit;
 }
+
+// .Cards-container.Cards-container{
+//   width: 100% !important;
+//   margin: 0;
+//   //float: right;
+//   height: inherit;
+//   margin: 0px;
+//   padding: 0px;
+// }
 
 a.page-link {
   background-color:transparent !important;
