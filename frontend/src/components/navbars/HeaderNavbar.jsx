@@ -63,7 +63,11 @@ class HeaderNavbar extends Component {
       .signInWithPopup(googleAuthProvider)
       .then(() => {
         var user = firebase.auth().currentUser;
+        var url = firebase.auth().currentUser.photoURL.toString();
+        console.log(url)
         var name = user.displayName;
+        localStorage.setItem("user",user);
+        localStorage.setItem("url",url);
         var email = user.email;
         var uid = user.uid;
         const userDto = {
@@ -76,6 +80,7 @@ class HeaderNavbar extends Component {
           localStorage.setItem("email", email);
           localStorage.setItem("username", name);
           localStorage.setItem("uid", uid);
+          
         }
 
         this.addUser();
@@ -87,6 +92,7 @@ class HeaderNavbar extends Component {
     localStorage.removeItem("email");
     localStorage.removeItem("username");
     localStorage.removeItem("uid");
+    localStorage.removeItem("user");
   }
 
   render() {
@@ -109,9 +115,11 @@ class HeaderNavbar extends Component {
             <div className="float-right navbar-icons">
               {/* toDo: clickable username for info */}
               {this.state.user && (
+                <a href="/user-page">
                 <div className="user-name">
                   {this.state.user.displayName.toUpperCase()}
                 </div>
+                </a>
               )}
               {!this.state.user && (
                 <button

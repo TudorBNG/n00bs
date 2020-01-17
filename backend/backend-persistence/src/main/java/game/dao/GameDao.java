@@ -76,6 +76,13 @@ public class GameDao {
                 .getResultList();
     }
 
+    public List<ReviewEntity> getUserReviews(Long id){
+        return this.entityManager
+                .createNamedQuery(ReviewEntity.GET_USER_REVIEWS, ReviewEntity.class)
+                .setParameter(ReviewEntity.ID, id)
+                .getResultList();
+    }
+
     public void persistReview(ReviewEntity reviewEntity){
         this.entityManager.persist(reviewEntity);
         GameEntity gameEntity = entityManager.find(GameEntity.class, reviewEntity.getId_game());

@@ -106,6 +106,16 @@ public class GameResource {
     }
 
     @POST
+    @Path("/userReviews")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllUserReviews(IdGameDto idGameDto){
+        return Response
+                .status(Response.Status.OK)
+                .entity(this.gameFacade.getUserReviews(idGameDto))
+                .build();
+    }
+
+    @POST
     @Path("/review/get")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserReview(UserReviewDto idGameDto){
