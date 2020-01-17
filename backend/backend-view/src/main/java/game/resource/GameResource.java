@@ -31,7 +31,6 @@ public class GameResource {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllGames(){
-        System.out.println("all");
         return Response
                 .status(Response.Status.OK)
                 .entity(this.gameFacade.getAllGames())
