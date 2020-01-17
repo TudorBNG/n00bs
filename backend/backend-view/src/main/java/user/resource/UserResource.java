@@ -83,6 +83,16 @@ public class UserResource {
     }
 
     @POST
+    @Path("/getUserById")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response getUserById(UserIdDto wishlistDto){
+        return Response
+                .ok()
+                .entity(this.userFacade.getUserById(wishlistDto))
+                .build();
+    }
+
+    @POST
     @Path("/wishlist/remove")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response removeFromWishlist(WishlistDto wishlistDto){

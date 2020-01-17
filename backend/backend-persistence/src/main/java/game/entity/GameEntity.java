@@ -42,7 +42,7 @@ public class GameEntity extends BaseEntity<Long> {
     private String cover_url;
 
     @Column(name = "rating", nullable = false)
-    private Float rating;
+    private Double rating;
 
     public GameEntity() {
     }
@@ -71,7 +71,7 @@ public class GameEntity extends BaseEntity<Long> {
         this.cover_url = cover_url;
     }
 
-    public GameEntity(Long id,String name, String release_date, String summary, Float rating, String cover_url) {
+    public GameEntity(Long id,String name, String release_date, String summary, Double rating, String cover_url) {
         this.id = id;
         this.name = name;
         this.release_date = release_date;
@@ -88,11 +88,11 @@ public class GameEntity extends BaseEntity<Long> {
         this.name = name;
     }
 
-    public Float getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Float rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

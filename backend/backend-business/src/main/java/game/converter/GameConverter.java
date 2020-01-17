@@ -3,6 +3,7 @@ package game.converter;
 import com.sun.org.apache.regexp.internal.RE;
 import game.converter.dto.ReviewDto;
 import game.converter.dto.ViewGameDto;
+import game.converter.dto.ViewReviewDto;
 import game.entity.GameEntity;
 import game.entity.ReviewEntity;
 
@@ -40,6 +41,24 @@ public class GameConverter {
                 reviewDto.getRating()
         );
     }
+
+    public ReviewDto convertReviewEntityToReviewDto(ReviewEntity reviewEntity){
+        return new ReviewDto(
+                reviewEntity.getId_user(),
+                reviewEntity.getId_game(),
+                reviewEntity.getRating(),
+                reviewEntity.getComment()
+                );
+    }
+//    public ViewReviewDto convertReviewEntityToViewReviewDto(ReviewEntity reviewEntity){
+//        return new ViewReviewDto(
+//                reviewEntity.getId_user(),
+//                reviewEntity.getUsername(),
+//                reviewEntity.getId_game(),
+//                reviewEntity.getRating(),
+//                reviewEntity.getComment());
+//    }
+    //publ
     //public List<Long>
 
 }

@@ -48,10 +48,15 @@ class WishlistPage extends Component {
 
     handleNextPage = () => {
         console.log("handleNext")
-        let nextPage = this.state.currentPage + 1
-        this.setState({
-            currentPage: nextPage
-        });
+        const indexOfLastGame = this.state.currentPage * this.state.gamesPerPage;
+        const indexOfFirstGame = indexOfLastGame - this.state.gamesPerPage;
+        const games = this.state.gamesList;
+        if (games.slice(indexOfFirstGame, indexOfLastGame).length != 0) {
+            let nextPage = this.state.currentPage + 1
+            this.setState({
+                currentPage: nextPage
+            });
+        }
     }
 
     handlePrevPage = () => {
@@ -79,7 +84,7 @@ class WishlistPage extends Component {
                         <HeaderNavbar />
                     </Row>
                     <Container className="Homepage-body">
-                        <Pagination className="Cards-container">
+                        <Pagination className="Cards-container-wishlist">
                             <Container >
                                 {
                                     this.state.gamesList &&

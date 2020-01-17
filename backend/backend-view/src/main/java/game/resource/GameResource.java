@@ -1,5 +1,6 @@
 package game.resource;
 
+import game.converter.dto.IdGameDto;
 import game.converter.dto.ReviewDto;
 import game.facade.GameFacade;
 import genre.converter.dto.GenreDto;
@@ -66,4 +67,25 @@ public class GameResource {
                 .ok()
                 .build();
     }
+
+//    @POST
+//    @Path("/review/all")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getAllGameReviews(IdGameDto idGameDto){
+//        return Response
+//                .status(Response.Status.OK)
+//                .entity(this.gameFacade.getGameReviews(idGameDto))
+//                .build();
+//    }
+
+    @POST
+    @Path("/review/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllGameReviews(IdGameDto idGameDto){
+        return Response
+                .status(Response.Status.OK)
+                .entity(this.gameFacade.getGameReviews(idGameDto))
+                .build();
+    }
+
 }

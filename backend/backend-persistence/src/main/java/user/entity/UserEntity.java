@@ -15,6 +15,8 @@ import java.util.Objects;
         {
                 @NamedQuery(name = UserEntity.GET_ALL_USERS, query = "Select user from UserEntity user"),
                 @NamedQuery(name = UserEntity.GET_USER_BY_EMAIL, query = "Select user from UserEntity user where user.email = :email"),
+                @NamedQuery(name = UserEntity.GET_USER_BY_ID, query = "Select user from UserEntity user where user.id = :id")
+
                 //@NamedQuery(name = UserEntity.GET_ALL_EMAILS, query = "Select user.email from UserEntity user")
 
         }
@@ -24,6 +26,8 @@ public class UserEntity extends BaseEntity<Long> {
     //Query names
     public static final String GET_ALL_USERS = "UserEntity.getAllUsers";
     public static final String GET_USER_BY_EMAIL = "UserEntity.getUserByEmail";
+    public static final String GET_USER_BY_ID = "UserEntity.getUserById";
+
     //public static final String GET_ALL_EMAILS = "UserEntity.getAllEmails";
 
 
