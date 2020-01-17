@@ -325,4 +325,31 @@ export class Service {
                 });
         });
     }
+
+    public static getDetailedGame(id: number) {
+        return new Promise((resolve, reject) => {
+            fetch(`${this.baseUrl}/game/detailed`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: id
+                })
+            })
+                .then(respo => {
+                    if (respo.ok) {
+                        return respo.json();
+                    } else throw respo;
+                })
+                .then(re => {
+                    resolve(re);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
 }

@@ -61,7 +61,8 @@ class GamePage extends Component {
             //   // })
             // }
             this.setState({
-              gameReviews: res
+              gameReviews: res,
+              reviewAdded: true
             })
           })
           .catch(err => console.log(err));
@@ -97,11 +98,10 @@ class GamePage extends Component {
     this.getUsrAndState(email);
     this.getGameReviews();
     this.getReviewAddedState(email, this.props.location.state.game.id)
+    //this.getDetailedGame(this.props.location.state.game.id)
   }
 
   getReviewAddedState = (email, id_game) => {
-
-
     Service.getUserByEmail(email)
       .then((res) => {
         Service.getUserReview(id_game, res.id)
@@ -121,8 +121,6 @@ class GamePage extends Component {
           .catch((err) => console.log(err))
       })
       .catch((err) => console.log(err))
-
-
   }
 
   getUsrAndState = email => {
@@ -196,6 +194,19 @@ class GamePage extends Component {
       .catch(err => console.log(err));
   };
 
+  getDetailedGame = () => {
+    console.log("getDetailedGame");
+    let id = this.state.game.id;
+    Service.getDetailedGame(id)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          game: res
+        })
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     const game = this.props.location.state.game;
     return (
@@ -232,7 +243,7 @@ class GamePage extends Component {
                       <Image
                         className={"addWishlist-img-style"}
                         alt="addToWishlist"
-                        src={this.state.isInWishlist ?
+                        src={!this.state.isInWishlist ?
                           require("../images/stars.png") : require("../images/stars_added.png")}
                       ></Image>
                     </a>
@@ -242,7 +253,7 @@ class GamePage extends Component {
                 <StarRatings
                   rating={this.state.game.rating}
                   starRatedColor="#F86210"
-                  changeRating={this.changeRating}
+                  //changeRating={this.changeRating}
                   numberOfStars={5}
                   name="rating"
                   starDimension="15px"
