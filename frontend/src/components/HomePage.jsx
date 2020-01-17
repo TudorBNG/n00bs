@@ -32,9 +32,8 @@ export default class HomePage extends Component {
       gamesPerPage: 5,
       genresList: [IGenre],
       clickedGenres: [],
-      filtered: false
-    filtered: false,
-    clickedGame: null
+      filtered: false,
+      clickedGame: null
     };
   }
 
