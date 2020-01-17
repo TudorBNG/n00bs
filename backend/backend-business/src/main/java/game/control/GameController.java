@@ -2,6 +2,7 @@ package game.control;
 
 import game.converter.GameConverter;
 import game.converter.dto.ReviewDto;
+import game.converter.dto.UserReviewDto;
 import game.converter.dto.ViewGameDto;
 import game.converter.dto.ViewReviewDto;
 import game.dao.GameDao;
@@ -64,6 +65,14 @@ public class GameController {
 
     public List<ReviewDto> getGameReviews(Long id){
         return this.gameDao.getGameReviews(id)
+                .stream()
+                .map(this.gameConverter::convertReviewEntityToReviewDto)
+                .collect(Collectors.toList());
+        //Long id = l.get(0).getId_user();
+    }
+
+    public List<ReviewDto> getUserReview(UserReviewDto id){
+        return this.gameDao.getUserReview(id.getId_game(),id.getId_user())
                 .stream()
                 .map(this.gameConverter::convertReviewEntityToReviewDto)
                 .collect(Collectors.toList());

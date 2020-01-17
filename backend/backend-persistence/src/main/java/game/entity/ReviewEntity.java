@@ -13,7 +13,7 @@ import javax.persistence.*;
                 @NamedQuery(name = ReviewEntity.GET_GAME_RATINGS, query = "Select review.rating from ReviewEntity review where review.id_game = :id"),
                 @NamedQuery(name = ReviewEntity.GET_ALL_REVIEWS, query = "Select review from ReviewEntity review"),
                 @NamedQuery(name = ReviewEntity.GET_GAME_REVIEWS, query = "Select review from ReviewEntity review join UserEntity user on user.id=review.id_user where review.id_game = :id"),
-                //@NamedQuery(name = ReviewEntity.GET_GAME_VIEW_REVIEWS, query = "Select review, user.username from ReviewEntity review join UserEntity user on user.id=review.id_user where review.id_game = :id")
+                @NamedQuery(name = ReviewEntity.GET_USER_REVIEW, query = "Select review from ReviewEntity review join UserEntity user on user.id=review.id_user where review.id_game = :id_game and review.id_user = :id_user")
 
         }
 )
@@ -26,6 +26,8 @@ public class ReviewEntity {
     public static final String GET_GAME_RATINGS = "ReviewEntity.getGameRatings";
     public static final String GET_ALL_REVIEWS = "ReviewEntity.getAllReviews";
     public static final String GET_GAME_REVIEWS = "ReviewEntity.getGameReviews";
+    public static final String GET_USER_REVIEW = "ReviewEntity.getUserReview";
+
     //public static final String GET_GAME_VIEW_REVIEWS = "ReviewEntity.getGameViewReviews";
 
     //public static final String GET_ALL_REVIEWS

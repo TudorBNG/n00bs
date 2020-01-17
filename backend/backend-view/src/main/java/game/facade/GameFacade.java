@@ -1,10 +1,7 @@
 package game.facade;
 
 import game.control.GameController;
-import game.converter.dto.IdGameDto;
-import game.converter.dto.ReviewDto;
-import game.converter.dto.ViewGameDto;
-import game.converter.dto.ViewReviewDto;
+import game.converter.dto.*;
 import genre.converter.dto.GenreIdsListDto;
 import user.converter.dto.UserIdDto;
 
@@ -45,6 +42,12 @@ public class GameFacade {
     public List<ReviewDto> getGameReviews(IdGameDto idGameDto){
         //return this.gameController.getGameReviews(idGameDto.getId());
         return this.gameController.getGameReviews(idGameDto.getId());
+
+    }
+
+    public List<ReviewDto> getUserReview(UserReviewDto idGameDto){
+        //return this.gameController.getGameReviews(idGameDto.getId());
+        return this.gameController.getUserReview(idGameDto);
 
     }
 

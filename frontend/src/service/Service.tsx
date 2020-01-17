@@ -273,6 +273,33 @@ export class Service {
         });
     }
 
+    public static getUserReview(id_game: number, id_user: number) {
+        return new Promise((resolve, reject) => {
+            fetch(`${this.baseUrl}/game/review/get`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id_game: id_game,
+                    id_user: id_user
+                })
+            })
+                .then(respo => {
+                    if (respo.ok) {
+                        return respo.json();
+                    } else throw respo;
+                })
+                .then(re => {
+                    resolve(re);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
     public static getUserById(id: number) {
         return new Promise((resolve, reject) => {
             fetch(`${this.baseUrl}/user/getUserById`, {
