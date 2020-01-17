@@ -6,12 +6,14 @@ import '../styles/components/Sidebar.scss';
 
 import GameCard from './GameCard';
 import GamePage from './GamePage';
+import ILiveSearch from '../models/LiveSearch'
 import IGenre from '../models/Genre.ts';
 import { Service } from '../service/Service';
 import IGame from '../models/Game.ts';
 import { Image, Col, Row, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
+import ReactLiveSearch from 'react-live-search';
 
 
 export default class HomePage extends Component {
@@ -21,24 +23,27 @@ export default class HomePage extends Component {
     this.getGames = this.getGames.bind(this);
     this.getGenres = this.getGenres.bind(this);
     this.handleGenreClick = this.handleGenreClick.bind(this);
-  }
-
-  state = {
-    gamesList: [IGame],
-    currentPage: 1,
-    gamesPerPage: 5,
-    genresList: [IGenre],
-    clickedGenres: [],
+   
+    this.state = {
+      value:'',
+      searchList: [],
+      gamesList: [IGame],
+      currentPage: 1,
+      gamesPerPage: 5,
+      genresList: [IGenre],
+      clickedGenres: [],
+      filtered: false
     filtered: false,
     clickedGame: null
-  };
+    };
+  }
 
   componentDidMount() {
     console.log("compodidmount");
     this.getGames()
       .then((res) => {
         this.setState({
-          gamesList: res
+          gamesList: res,
         })
       })
       .catch(err => console.log(err))
@@ -47,9 +52,15 @@ export default class HomePage extends Component {
         this.setState({
           genresList: res
         })
-        console.log(res)
       })
       .catch(err => console.log(err))
+      this.getGames()
+      .then((res) => {
+        let items = res.map((r, i) => { return { label: r.name, value: r } })
+        this.setState({
+          searchList: items,
+        })
+      })
   }
 
   handleNextPage = () => {
@@ -176,12 +187,40 @@ export default class HomePage extends Component {
       .catch(err => console.log(err));
   };
 
+  onChange = value => {
+    var games = this.state.searchList.map((x,i) => {return x.value})
+    if (value==''){
+      this.getGames()
+      .then((res) => {
+        this.setState({
+          value: '',
+          gamesList: res,
+        })
+      })
+      .catch(err => console.log(err))
+    }
+    else{
+    var list = []
+    for(var i=0;i<games.length;i++){
+      if(games[i].name.toLowerCase().includes(value.toLowerCase()))
+      list.push(games[i])
+    }
+    console.log(list)
+    this.setState({
+      value,
+      gamesList: list
+    });
+  }
+  };
+
+  onSelect = v => {};
+
   render() {
     let i = 0;
     const indexOfLastGame = this.state.currentPage * this.state.gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - this.state.gamesPerPage;
     const currentGames = this.state.gamesList.slice(indexOfFirstGame, indexOfLastGame);
-
+  
     return (
       <div className="Full-view">
         <Container>
@@ -198,6 +237,14 @@ export default class HomePage extends Component {
               })}
             </ul>
             <Pagination className="Cards-container">
+              <Container className="live-search">
+            <ReactLiveSearch
+              value={this.state.value}
+              onChange={this.onChange}
+              onSelect={this.onSelect}
+              data={this.state.searchList}
+            ></ReactLiveSearch> 
+            </Container>
               <Container >
                 {
                   this.state.gamesList && (
