@@ -21,7 +21,7 @@ public class CompleteGameDto {
 
     private String summary;
 
-    private Float rating;
+    private Double rating;
 
     private String cover_url;
 
@@ -34,7 +34,7 @@ public class CompleteGameDto {
     public CompleteGameDto() {
     }
 
-    public CompleteGameDto(Long id, String name, String release_date, String summary, Float rating, String cover_url, List<CompanyEntity> companyEntityList, List<GenreEntity> genreEntityList, List<PlatformEntity> platformEntityList) {
+    public CompleteGameDto(Long id, String name, String release_date, String summary, Double rating, String cover_url, List<CompanyEntity> companyEntityList, List<GenreEntity> genreEntityList, List<PlatformEntity> platformEntityList) {
         this.id = id;
         this.name = name;
         this.release_date = release_date;
@@ -78,11 +78,11 @@ public class CompleteGameDto {
         this.summary = summary;
     }
 
-    public Float getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Float rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
