@@ -171,7 +171,7 @@ class GamePage extends Component {
                 </h1>
                 <h6>{game.release_date}</h6>
                 <StarRatings
-                  rating={4.4}
+                  rating={this.state.game.rating}
                   starRatedColor="#F86210"
                   changeRating={this.changeRating}
                   numberOfStars={5}

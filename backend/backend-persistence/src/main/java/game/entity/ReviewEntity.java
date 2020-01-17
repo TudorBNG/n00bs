@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "comment_rating")
 @NamedQueries(
         {
-                //@NamedQuery(name = WishlistEntity.GET_ALL_WISHLIST, query = "Select wishlist from WishlistEntity wishlist"),
+                @NamedQuery(name = ReviewEntity.GET_GAME_RATINGS, query = "Select review.rating from ReviewEntity review where review.id_game = :id")
         }
 )
 public class ReviewEntity {
@@ -19,6 +19,8 @@ public class ReviewEntity {
     //Query names
     //public static final String GET_ALL_WISHLIST = "WishlistEntity.getAllWishlist";
 //    public static final String GET_USER_BY_EMAIL = "UserEntity.getUserByEmail";
+    public static final String GET_GAME_RATINGS = "ReviewEntity.getGameRatings";
+
 
     @Id
     @Column(name="id_user", nullable = false)

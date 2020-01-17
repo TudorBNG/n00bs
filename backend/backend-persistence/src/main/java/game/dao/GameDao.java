@@ -42,7 +42,25 @@ public class GameDao {
                 .getResultList();
     }
 
+
+
     public void persistReview(ReviewEntity reviewEntity){
         this.entityManager.persist(reviewEntity);
+        GameEntity gameEntity = entityManager.find(GameEntity.class, reviewEntity.getId_game());
+        if (gameEntity != null) {
+            List<Double> lst = this.entityManager
+                    .createNamedQuery(ReviewEntity.GET_GAME_RATINGS, Double.class)
+                    .setParameter("id",reviewEntity.getId_game())
+                    .getResultList();
+            double sum = 0;
+            for(int i=0;i<lst.size();i++){
+                sum+=lst.get(i);
+            }
+            double average = sum/lst.size();
+            //entityManager.getTransaction().begin();
+            gameEntity.setRating(average);
+            //entityManager.getTransaction().commit();
+
+        }
     }
 }
